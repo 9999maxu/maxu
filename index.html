@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低调变强 · 个人健身舱</title>
+    <style>
+        :root {
+            --bg: #f0f0f0; --card: #ffffff; --text: #222;
+            --text-light: #777; --accent: #4CAF50; --border: #e0e0e0;
+            --danger: #f44336; --warn: #FF9800;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif; background: var(--bg);
+            color: var(--text); display: flex; justify-content: center;
+            padding: 20px; min-height: 100vh;
+        }
+        .container { max-width: 520px; width: 100%; }
+
+        .main-nav {
+            display: flex; gap: 4px; margin-bottom: 16px;
+            background: var(--card); border-radius: 12px; padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .nav-btn {
+            flex: 1; padding: 10px 4px; border: none; background: transparent;
+            border-radius: 10px; font-size: 0.8em; font-weight: 600;
+            cursor: pointer; color: var(--text-light); transition: 0.2s;
+            white-space: nowrap;
+        }
+        .nav-btn.active { background: var(--accent); color: white; }
+
+        .card {
+            background: var(--card); border-radius: 16px; padding: 20px;
+            margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        h1 { font-size: 1.3em; } h2 { font-size: 1.1em; margin-bottom: 12px; }
+        .sub { color: var(--text-light); font-size: 0.85em; margin-bottom: 16px; }
+
+        .row { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
+        .btn {
+            background: none; border: 1px solid var(--border); padding: 8px 14px;
+            border-radius: 30px; font-size: 0.8em; cursor: pointer; color: var(--text);
+        }
+        .btn:hover { background: var(--bg); }
+        .btn.accent { background: var(--accent); color: white; border: none; }
+        .btn.danger { background: var(--danger); color: white; border: none; }
+        .btn.small { padding: 4px 10px; font-size: 0.7em; }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* 主页 */
+        .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+        .cell {
+            background: var(--card); border-radius: 14px; padding: 12px 2px;
+            text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .day { font-weight: 600; font-size: 0.75em; }
+        .date { font-size: 0.65em; color: var(--text-light); margin: 4px 0 8px; }
+        .icon { font-size: 1.2em; margin-bottom: 6px; display: block; }
+        button.check {
+            background: var(--bg); color: var(--text); border: none;
+            border-radius: 30px; padding: 8px 2px; font-size: 0.7em;
+            cursor: pointer; width: 100%; font-weight: 600;
+        }
+        button.check.done { background: var(--accent); color: white; }
+
+        .today-plan-box {
+            background: #f9fdf9; border: 1px solid var(--accent);
+            border-radius: 12px; padding: 14px; margin-top: 12px;
+            overflow-wrap: break-word; word-break: break-all;
+        }
+        .today-plan-box h3 {
+            font-size: 0.9em; color: var(--accent); margin-bottom: 6px;
+        }
+        .plan-content {
+            font-size: 0.85em; color: var(--text);
+            overflow-wrap: break-word; word-break: break-all; max-width: 100%;
+        }
+        .plan-empty { color: var(--text-light); font-style: italic; font-size: 0.8em; }
+
+        /* 循环计划 */
+        .cycle-config {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+            background: var(--bg); padding: 12px; border-radius: 12px; flex-wrap: wrap;
+        }
+        .cycle-config label { font-size: 0.8em; font-weight: 600; }
+        .cycle-config input[type="number"] {
+            width: 60px; padding: 6px; border: 1px solid var(--border);
+            border-radius: 8px; text-align: center; font-size: 0.9em; background: var(--card);
+        }
+        .cycle-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .cycle-table th, .cycle-table td {
+            border: 1px solid var(--border); padding: 8px 6px; text-align: center; font-size: 0.8em;
+        }
+        .cycle-table th { background: var(--bg); font-weight: 600; }
+        .cycle-table td.today-row { background: #e8f5e9; font-weight: 600; }
+        .cycle-table input {
+            width: 100%; border: none; background: transparent;
+            text-align: center; font-size: 0.8em; color: var(--text); padding: 4px;
+        }
+        .rest-day-tag {
+            display: inline-block; background: #e3f2fd; color: #1976d2;
+            padding: 2px 10px; border-radius: 12px; font-size: 0.75em; cursor: pointer;
+        }
+        .rest-day-tag.active { background: #1976d2; color: white; }
+
+        /* 计时器 */
+        .timer-display {
+            font-size: 2.8em; font-weight: 700; text-align: center; padding: 16px;
+        }
+        .timer-controls { display: flex; gap: 8px; justify-content: center; }
+        .timer-presets { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+        .preset-btn {
+            background: var(--bg); border: 1px solid var(--border);
+            padding: 5px 10px; border-radius: 20px; font-size: 0.7em; cursor: pointer;
+        }
+
+        /* 成长页 */
+        .metric-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+        .metric-tag {
+            background: var(--bg); border: 1px solid var(--border);
+            padding: 5px 12px; border-radius: 20px; font-size: 0.75em; cursor: pointer;
+        }
+        .metric-tag.active { background: var(--accent); color: white; }
+        .history-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.75em; }
+        .history-table th, .history-table td {
+            border: 1px solid var(--border); padding: 8px 4px; text-align: center;
+        }
+        .history-table th { background: var(--bg); }
+        .trend-up { color: var(--accent); font-weight: 600; }
+        .trend-down { color: var(--danger); font-weight: 600; }
+        .trend-stable { color: var(--warn); font-weight: 600; }
+        .del-btn { background: none; border: none; color: var(--danger); cursor: pointer; }
+
+        .foot { text-align: center; color: var(--text-light); font-size: 0.7em; margin-top: 20px; opacity: 0.7; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 主导航 -->
+    <div class="main-nav">
+        <button class="nav-btn active" data-page="home">📋 主页</button>
+        <button class="nav-btn" data-page="plan">🔄 计划</button>
+        <button class="nav-btn" data-page="timer">⏱ 计时</button>
+        <button class="nav-btn" data-page="growth">📈 成长</button>
+    </div>
+
+    <!-- 页面1：主页 -->
+    <div class="page active" id="page-home">
+        <div class="card">
+            <h1>低调健身中</h1>
+            <div class="sub">一周七天 · 打卡记录</div>
+            <div id="nowDate">加载中...</div>
+            <div style="text-align:center; margin:12px 0; font-weight:500;" id="counter">计算中...</div>
+            <div class="today-plan-box" id="todayPlanBox">
+                <h3>📌 今日训练计划</h3>
+                <div class="plan-content" id="todayPlanContent"><span class="plan-empty">加载中...</span></div>
+            </div>
+            <div class="row">
+                <button class="btn" id="startBtn">⚙️ 起始日</button>
+                <button class="btn" id="resetBtn">↺ 重置</button>
+            </div>
+            <div id="picker" style="display:none; margin-top:12px; gap:6px; align-items:center;" class="row">
+                <input type="date" id="dateInput" style="flex:1; padding:8px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text);">
+                <button class="btn accent" id="saveBtn">保存</button>
+            </div>
+        </div>
+        <div class="grid" id="grid"></div>
+        <div class="foot">安静的记录，安心的陪伴</div>
+    </div>
+
+    <!-- 页面2：循环训练计划 -->
+    <div class="page" id="page-plan">
+        <div class="card">
+            <h2>🔄 循环训练计划</h2>
+            <div class="cycle-config">
+                <label>循环天数：</label>
+                <input type="number" id="cycleDaysInput" min="1" max="14" value="4">
+                <span style="font-size:0.75em; color:var(--text-light);">天</span>
+                <button class="btn accent small" id="applyCycleBtn">应用</button>
+                <span style="font-size:0.75em; color:var(--accent); font-weight:600; margin-left:auto;" id="cycleInfo"></span>
+            </div>
+            <table class="cycle-table">
+                <thead><tr><th>第N天</th><th>状态</th><th>训练部位</th><th>动作列表</th></tr></thead>
+                <tbody id="cycleBody"></tbody>
+            </table>
+            <div class="row" style="justify-content:space-between; margin-top:16px;">
+                <button class="btn" id="resetCycleBtn">🔄 重置起始日</button>
+                <button class="btn accent" id="saveCycleBtn">💾 保存计划</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面3：计时器 -->
+    <div class="page" id="page-timer">
+        <div class="card">
+            <h2>⏱ 训练计时器</h2>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            <div class="timer-controls">
+                <button class="btn accent" id="timerStartBtn">▶ 开始</button>
+                <button class="btn" id="timerPauseBtn">⏸ 暂停</button>
+                <button class="btn" id="timerResetBtn">↺ 重置</button>
+            </div>
+            <div class="timer-presets">
+                <button class="preset-btn" data-seconds="30">30秒</button>
+                <button class="preset-btn" data-seconds="60">1分</button>
+                <button class="preset-btn" data-seconds="90">1分半</button>
+                <button class="preset-btn" data-seconds="120">2分</button>
+                <button class="preset-btn" data-seconds="180">3分</button>
+                <button class="preset-btn" data-seconds="300">5分</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面4：成长 -->
+    <div class="page" id="page-growth">
+        <div class="card">
+            <h2>📈 成长记录 · 身体数据</h2>
+            <div class="sub">记录你的体重、围度、体脂等，看见变化</div>
+            <div class="metric-selector" id="metricSelector">
+                <span class="metric-tag active" data-metric="weight">⚖️ 体重(kg)</span>
+                <span class="metric-tag" data-metric="chest">📏 胸围(cm)</span>
+                <span class="metric-tag" data-metric="arm">💪 臂围(cm)</span>
+                <span class="metric-tag" data-metric="waist">🩱 腰围(cm)</span>
+                <span class="metric-tag" data-metric="bodyfat">🧴 体脂(%)</span>
+            </div>
+            <div class="row">
+                <input type="number" id="growthValue" placeholder="输入数值" step="0.1" style="flex:1; padding:10px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text);">
+                <input type="date" id="growthDate" style="max-width:140px; padding:10px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text);">
+                <button class="btn accent" id="growthAddBtn">➕ 记录</button>
+            </div>
+            <div style="text-align:center; margin:10px 0; font-size:0.85em;" id="trendInfo"></div>
+            <table class="history-table" id="historyTable">
+                <thead><tr><th>日期</th><th>数值</th><th>变化</th><th>操作</th></tr></thead>
+                <tbody id="historyBody"></tbody>
+            </table>
+            <div class="row" style="justify-content:flex-end; margin-top:12px;">
+                <button class="btn danger" id="clearGrowthBtn">🗑 清空当前指标</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    // ==================== 导航 ====================
+    var navBtns = document.querySelectorAll('.nav-btn');
+    var pages = document.querySelectorAll('.page');
+    navBtns.forEach(function(btn) {
+        btn.onclick = function() {
+            var target = this.getAttribute('data-page');
+            navBtns.forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            pages.forEach(function(p) { p.classList.remove('active'); });
+            var pageEl = document.getElementById('page-' + target);
+            if (pageEl) pageEl.classList.add('active');
+            if (target === 'timer') updateTimerDisplay();
+            if (target === 'growth') renderGrowthHistory();
+            if (target === 'home') renderTodayPlan();
+            if (target === 'plan') initCyclePage();
+        };
+    });
+
+    // ==================== 主页 ====================
+    var DAYS = ['周一','周二','周三','周四','周五','周六','周日'];
+    var weekData = JSON.parse(localStorage.getItem('weekCheckData') || '[false,false,false,false,false,false,false]');
+
+    function getWeekDates() {
+        var today = new Date();
+        var diff = today.getDay() === 0 ? 6 : today.getDay() - 1;
+        var monday = new Date(today);
+        monday.setDate(today.getDate() - diff);
+        var dates = [];
+        for (var i = 0; i < 7; i++) {
+            var d = new Date(monday);
+            d.setDate(monday.getDate() + i);
+            dates.push(d);
+        }
+        return dates;
+    }
+
+    function renderGrid() {
+        var grid = document.getElementById('grid');
+        if (!grid) return;
+        var dates = getWeekDates();
+        grid.innerHTML = '';
+        for (var i = 0; i < DAYS.length; i++) {
+            (function(index) {
+                var done = weekData[index];
+                var d = dates[index];
+                var cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.innerHTML = '<div class="day">' + DAYS[index] + '</div>' +
+                    '<div class="date">' + (d.getMonth()+1) + '/' + d.getDate() + '</div>' +
+                    '<span class="icon">' + (done ? '✅' : '⭕') + '</span>' +
+                    '<button class="check' + (done ? ' done' : '') + '">' + (done ? '已打卡' : '打卡') + '</button>';
+                cell.querySelector('button').onclick = function() {
+                    weekData[index] = !weekData[index];
+                    localStorage.setItem('weekCheckData', JSON.stringify(weekData));
+                    renderGrid();
+                };
+                grid.appendChild(cell);
+            })(i);
+        }
+    }
+
+    function updateInfo() {
+        var now = new Date();
+        var wd = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        var dateEl = document.getElementById('nowDate');
+        if (dateEl) dateEl.textContent = '📅 ' + now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日 ' + wd[now.getDay()];
+        var startStr = localStorage.getItem('startDate') || '2026-04-20';
+        var start = new Date(startStr + 'T00:00:00');
+        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var days = Math.floor((today - start) / 86400000) + 1;
+        var counter = document.getElementById('counter');
+        if (counter) counter.textContent = '我已低调变好 ' + days + ' 天';
+    }
+
+    function getCurrentCycleDay() {
+        var cycleStartStr = localStorage.getItem('cycleStartDate') || localStorage.getItem('startDate') || '2026-04-20';
+        var start = new Date(cycleStartStr + 'T00:00:00');
+        var today = new Date(); today.setHours(0,0,0,0);
+        var diffDays = Math.floor((today - start) / 86400000);
+        var cycleDays = parseInt(localStorage.getItem('cycleDays') || '4');
+        var dayInCycle = (diffDays % cycleDays);
+        if (dayInCycle < 0) dayInCycle += cycleDays;
+        return { dayIndex: dayInCycle, cycleDays: cycleDays, startDate: cycleStartStr };
+    }
+
+    function renderTodayPlan() {
+        var cycleData = JSON.parse(localStorage.getItem('cyclePlanData') || '[]');
+        var cycleInfo = getCurrentCycleDay();
+        var dayIndex = cycleInfo.dayIndex;
+        var contentEl = document.getElementById('todayPlanContent');
+        if (!contentEl) return;
+        if (cycleData.length === 0 || dayIndex >= cycleData.length) {
+            contentEl.innerHTML = '<span class="plan-empty">暂无训练计划，去「🔄 计划」页面设置循环吧</span>';
+            return;
+        }
+        var todayCycle = cycleData[dayIndex];
+        var titleEl = document.querySelector('#todayPlanBox h3');
+        if (titleEl) titleEl.textContent = '📌 今日训练计划 · 循环第 ' + (dayIndex + 1) + ' 天';
+        if (todayCycle.isRest) {
+            contentEl.innerHTML = '<div style="color:#1976d2; font-weight:500;">😴 今日休息</div>';
+        } else {
+            var part = todayCycle.部位 || '';
+            var action = todayCycle.动作 || '';
+            if (!part && !action) {
+                contentEl.innerHTML = '<span class="plan-empty">今日暂无安排，去计划页填写内容</span>';
+            } else {
+                var html = '';
+                if (part) html += '<div style="margin-bottom:4px;"><strong>训练部位：</strong>' + part + '</div>';
+                if (action) html += '<div><strong>动作列表：</strong>' + action + '</div>';
+                contentEl.innerHTML = html;
+            }
+        }
+    }
+
+    document.getElementById('startBtn').onclick = function() {
+        var picker = document.getElementById('picker');
+        picker.style.display = (picker.style.display === 'none' || picker.style.display === '') ? 'flex' : 'none';
+        if (picker.style.display === 'flex') document.getElementById('dateInput').value = localStorage.getItem('startDate') || '2026-04-20';
+    };
+    document.getElementById('saveBtn').onclick = function() {
+        var val = document.getElementById('dateInput').value;
+        if (val) { localStorage.setItem('startDate', val); updateInfo(); document.getElementById('picker').style.display = 'none'; }
+    };
+    document.getElementById('resetBtn').onclick = function() {
+        if (confirm('确定要重置本周所有打卡记录吗？')) {
+            weekData = [false,false,false,false,false,false,false];
+            localStorage.setItem('weekCheckData', JSON.stringify(weekData));
+            renderGrid();
+        }
+    };
+    updateInfo(); renderGrid(); renderTodayPlan();
+
+    // ==================== 循环训练计划 ====================
+    var cyclePlanData = JSON.parse(localStorage.getItem('cyclePlanData') || '[]');
+    var cycleDays = parseInt(localStorage.getItem('cycleDays') || '4');
+    var cycleStartDate = localStorage.getItem('cycleStartDate') || localStorage.getItem('startDate') || '2026-04-20';
+
+    function initCyclePage() {
+        document.getElementById('cycleDaysInput').value = cycleDays;
+        renderCycleTable();
+    }
+
+    function renderCycleTable() {
+        var tbody = document.getElementById('cycleBody');
+        if (!tbody) return;
+        while (cyclePlanData.length < cycleDays) cyclePlanData.push({ isRest:false, 部位:'', 动作:'' });
+        while (cyclePlanData.length > cycleDays) cyclePlanData.pop();
+        var todayInfo = getCurrentCycleDay();
+        var todayIndex = todayInfo.dayIndex;
+        tbody.innerHTML = '';
+        for (var i = 0; i < cycleDays; i++) {
+            (function(index) {
+                var dayData = cyclePlanData[index];
+                var tr = document.createElement('tr');
+                if (index === todayIndex) tr.className = 'today-row';
+                tr.innerHTML = '<td>第' + (index+1) + '天' + (index===todayIndex?' ⬅':'') + '</td>' +
+                    '<td><span class="rest-day-tag' + (dayData.isRest?' active':'') + '">' + (dayData.isRest?'休息':'训练') + '</span></td>' +
+                    '<td><input type="text" placeholder="' + (dayData.isRest?'':'如：胸+三头') + '" value="' + (dayData.部位||'') + '" ' + (dayData.isRest?'disabled':'') + '></td>' +
+                    '<td><input type="text" placeholder="' + (dayData.isRest?'':'如：卧推 5x5') + '" value="' + (dayData.动作||'') + '" ' + (dayData.isRest?'disabled':'') + '></td>';
+                tr.querySelector('.rest-day-tag').onclick = function() {
+                    cyclePlanData[index].isRest = !cyclePlanData[index].isRest;
+                    renderCycleTable();
+                };
+                var inputs = tr.querySelectorAll('input');
+                if (inputs.length >= 2) {
+                    inputs[0].oninput = function() { cyclePlanData[index].部位 = this.value; };
+                    inputs[1].oninput = function() { cyclePlanData[index].动作 = this.value; };
+                }
+                tbody.appendChild(tr);
+            })(i);
+        }
+        var infoEl = document.getElementById('cycleInfo');
+        if (infoEl) infoEl.textContent = '📍 今日：第 ' + (todayIndex + 1) + ' 天 / 共 ' + cycleDays + ' 天循环';
+    }
+
+    document.getElementById('applyCycleBtn').onclick = function() {
+        var newDays = parseInt(document.getElementById('cycleDaysInput').value);
+        if (isNaN(newDays) || newDays < 1 || newDays > 14) return alert('循环天数请设置在 1-14 之间');
+        cycleDays = newDays;
+        localStorage.setItem('cycleDays', cycleDays);
+        while (cyclePlanData.length < cycleDays) cyclePlanData.push({ isRest:false, 部位:'', 动作:'' });
+        while (cyclePlanData.length > cycleDays) cyclePlanData.pop();
+        localStorage.setItem('cyclePlanData', JSON.stringify(cyclePlanData));
+        renderCycleTable();
+    };
+    document.getElementById('saveCycleBtn').onclick = function() {
+        localStorage.setItem('cyclePlanData', JSON.stringify(cyclePlanData));
+        localStorage.setItem('cycleDays', cycleDays);
+        alert('循环计划已保存！');
+        renderTodayPlan();
+    };
+    document.getElementById('resetCycleBtn').onclick = function() {
+        var todayStr = new Date().toISOString().split('T')[0];
+        if (confirm('将循环起始日重置为今天（' + todayStr + '）？\n今天将成为循环第 1 天。')) {
+            cycleStartDate = todayStr;
+            localStorage.setItem('cycleStartDate', cycleStartDate);
+            renderCycleTable();
+            renderTodayPlan();
+            alert('已重置！今天起为循环第 1 天。');
+        }
+    };
+
+    // ==================== 计时器（修复提示音兼容性） ====================
+    var timerSeconds = 0, timerInterval = null, timerRunning = false;
+
+    function updateTimerDisplay() {
+        var display = document.getElementById('timerDisplay');
+        if (!display) return;
+        var min = Math.floor(timerSeconds / 60), sec = timerSeconds % 60;
+        display.textContent = (min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec);
+    }
+
+    function stopTimer() {
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        timerRunning = false;
+    }
+
+    function playBeepSequence() {
+        try {
+            var AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) { if (navigator.vibrate) navigator.vibrate([100,80,100,80,100]); return; }
+            var ctx = new AudioContext();
+            var now = ctx.currentTime;
+            for (var i = 0; i < 3; i++) {
+                var osc = ctx.createOscillator();
+                var gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = 1000;
+                var t = now + i * 0.1;
+                gain.gain.setValueAtTime(0.3, t);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(t);
+                osc.stop(t + 0.1);
+            }
+            setTimeout(function() { ctx.close(); }, 800);
+        } catch(e) {}
+        if (navigator.vibrate) navigator.vibrate([100,80,100,80,100]);
+    }
+
+    document.getElementById('timerStartBtn').onclick = function() {
+        if (timerRunning || timerSeconds <= 0) return;
+        timerRunning = true;
+        timerInterval = setInterval(function() {
+            if (timerSeconds > 0) { timerSeconds--; updateTimerDisplay(); }
+            if (timerSeconds <= 0) { stopTimer(); updateTimerDisplay(); playBeepSequence(); }
+        }, 1000);
+    };
+    document.getElementById('timerPauseBtn').onclick = function() { stopTimer(); updateTimerDisplay(); };
+    document.getElementById('timerResetBtn').onclick = function() { stopTimer(); timerSeconds = 0; updateTimerDisplay(); };
+    document.querySelectorAll('.preset-btn').forEach(function(btn) {
+        btn.onclick = function() { stopTimer(); timerSeconds = parseInt(this.getAttribute('data-seconds')); updateTimerDisplay(); };
+    });
+    updateTimerDisplay();
+
+    // ==================== 成长页（修复趋势计算逻辑） ====================
+    var currentMetric = 'weight';
+    var metricNames = { weight:'体重(kg)', chest:'胸围(cm)', arm:'臂围(cm)', waist:'腰围(cm)', bodyfat:'体脂(%)' };
+
+    function getGrowthData() {
+        try { return JSON.parse(localStorage.getItem('growthData') || '{}'); } catch(e) { return {}; }
+    }
+    function saveGrowthData(data) { localStorage.setItem('growthData', JSON.stringify(data)); }
+
+    document.querySelectorAll('.metric-tag').forEach(function(tag) {
+        tag.onclick = function() {
+            document.querySelectorAll('.metric-tag').forEach(function(t) { t.classList.remove('active'); });
+            this.classList.add('active');
+            currentMetric = this.getAttribute('data-metric');
+            renderGrowthHistory();
+        };
+    });
+
+    var todayStr = new Date().toISOString().split('T')[0];
+    var growthDateInput = document.getElementById('growthDate');
+    if (growthDateInput) growthDateInput.value = todayStr;
+
+    function renderGrowthHistory() {
+        var data = getGrowthData();
+        var records = (data[currentMetric] || []).slice();
+        records.sort(function(a, b) { return b.date.localeCompare(a.date); });
+        var tbody = document.getElementById('historyBody');
+        var trendInfo = document.getElementById('trendInfo');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        if (records.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="color:var(--text-light); padding:20px;">暂无记录</td></tr>';
+            if (trendInfo) trendInfo.textContent = '';
+            return;
+        }
+        var latest = records[0].value;
+        var previous = records.length > 1 ? records[1].value : null;
+        if (trendInfo && previous !== null) {
+            var diff = (latest - previous).toFixed(1);
+            var unit = currentMetric === 'bodyfat' ? '%' : '';
+            var trendText = '最新变化（较上次）：';
+            if (diff > 0) trendText += '<span class="trend-up">↑ +' + diff + unit + '</span>';
+            else if (diff < 0) trendText += '<span class="trend-down">↓ ' + diff + unit + '</span>';
+            else trendText += '<span class="trend-stable">→ 持平</span>';
+            trendInfo.innerHTML = trendText;
+        } else if (trendInfo) {
+            trendInfo.textContent = '至少需要两次记录才能看到趋势';
+        }
+        for (var i = 0; i < records.length; i++) {
+            (function(index) {
+                var r = records[index];
+                var tr = document.createElement('tr');
+                var unit = currentMetric === 'bodyfat' ? '%' : '';
+                var changeHtml = '-';
+                if (index < records.length - 1) {
+                    var change = (r.value - records[index + 1].value).toFixed(1);
+                    if (change > 0) changeHtml = '<span class="trend-up">+' + change + unit + '</span>';
+                    else if (change < 0) changeHtml = '<span class="trend-down">' + change + unit + '</span>';
+                    else changeHtml = '<span class="trend-stable">0</span>';
+                }
+                tr.innerHTML = '<td>' + r.date + '</td><td>' + r.value + unit + '</td><td>' + changeHtml + '</td><td><button class="del-btn">✕</button></td>';
+                tr.querySelector('.del-btn').onclick = function() {
+                    var records2 = (getGrowthData()[currentMetric] || []).slice();
+                    records2.sort(function(a, b) { return b.date.localeCompare(a.date); });
+                    records2.splice(index, 1);
+                    var allData = getGrowthData();
+                    allData[currentMetric] = records2;
+                    saveGrowthData(allData);
+                    renderGrowthHistory();
+                };
+                tbody.appendChild(tr);
+            })(i);
+        }
+    }
+
+    document.getElementById('growthAddBtn').onclick = function() {
+        var value = parseFloat(document.getElementById('growthValue').value);
+        var date = document.getElementById('growthDate').value;
+        if (isNaN(value) || !date) return alert('请输入有效的数值和日期');
+        var data = getGrowthData();
+        if (!data[currentMetric]) data[currentMetric] = [];
+        var found = false;
+        for (var i = 0; i < data[currentMetric].length; i++) {
+            if (data[currentMetric][i].date === date) { data[currentMetric][i].value = value; found = true; break; }
+        }
+        if (!found) data[currentMetric].push({ date: date, value: value });
+        saveGrowthData(data);
+        document.getElementById('growthValue').value = '';
+        renderGrowthHistory();
+    };
+    document.getElementById('clearGrowthBtn').onclick = function() {
+        if (confirm('确定要清空「' + metricNames[currentMetric] + '」的所有记录吗？')) {
+            var data = getGrowthData();
+            data[currentMetric] = [];
+            saveGrowthData(data);
+            renderGrowthHistory();
+        }
+    };
+    renderGrowthHistory();
+})();
+</script>
+</body>
+</html>
