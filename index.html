@@ -95,19 +95,38 @@
 
         /* 微习惯 */
         .habit-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; }
-        .habit-check {
-            width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border);
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: 0.2s; font-size: 0.7em; margin-right: 8px; flex-shrink: 0;
-        }
+        .habit-check { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 0.7em; margin-right: 8px; flex-shrink: 0; }
         .habit-check.done { background: var(--accent); border-color: var(--accent); color: var(--bg); }
         .habit-name { font-size: 0.82em; flex: 1; }
-        .habit-del { color: var(--text-light); cursor: pointer; font-size: 0.75em; transition: 0.2s; }
-        .habit-del:hover { color: #e55; }
-        .habit-add-row { display: flex; gap: 6px; margin-top: 8px; }
-        .habit-add-row input { flex: 1; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
+        .habit-del { color: var(--text-light); cursor: pointer; font-size: 0.75em; }
 
-        /* 日志 */
+        /* 饮食模块 */
+        .meal-tabs { display: flex; gap: 4px; margin-bottom: 14px; }
+        .meal-tab { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: none; cursor: pointer; font-size: 0.78em; color: var(--text); transition: 0.2s; text-align: center; }
+        .meal-tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .category-filter { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+        .cat-tag { padding: 3px 10px; border: 1px solid var(--border); border-radius: 12px; font-size: 0.68em; cursor: pointer; color: var(--text-light); background: none; }
+        .cat-tag.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .dish-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .dish-item { padding: 6px 14px; border: 1px solid var(--border); border-radius: 16px; font-size: 0.75em; cursor: pointer; transition: 0.2s; color: var(--text); }
+        .dish-item.selected { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .selected-meals { margin-top: 10px; padding: 10px; background: var(--accent-bg); border-radius: 8px; font-size: 0.75em; min-height: 36px; }
+        .selected-meals span { color: var(--text-light); }
+        .dish-mgmt { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 12px; }
+        .dish-mgmt .row { margin-top: 6px; }
+        .dish-mgmt select, .dish-mgmt input { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.72em; background: var(--card); color: var(--text); }
+        .dish-mgmt input { flex: 1; }
+        .category-mgmt { margin-top: 8px; }
+        .category-mgmt .cat-row { display: flex; gap: 4px; align-items: center; margin-top: 4px; }
+        .category-mgmt input { flex: 1; padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.7em; background: var(--card); color: var(--text); }
+
+        /* 今日餐盘 */
+        .meal-summary { display: flex; gap: 8px; margin-top: 6px; font-size: 0.72em; }
+        .meal-summary-item { flex: 1; padding: 6px 8px; background: var(--accent-bg); border-radius: 6px; text-align: center; }
+        .meal-summary-item .meal-label { color: var(--text-light); font-size: 0.85em; }
+        .meal-summary-item .meal-content { margin-top: 2px; }
+
+        /* 日志、热力图等保持原有样式 */
         .log-item { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; font-size: 0.78em; }
         .log-item:last-child { border-bottom: none; }
         .log-date { color: var(--text-light); white-space: nowrap; min-width: 65px; }
@@ -116,7 +135,6 @@
         .log-search { margin-bottom: 10px; }
         .log-search input { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
 
-        /* 热力图 */
         .heatmap-wrapper { display: flex; justify-content: center; margin: 8px 0; }
         .heatmap-grid { display: grid; grid-template-columns: repeat(26, 1fr); gap: 2px; }
         .heatmap-cell { width: 15px; height: 15px; border-radius: 3px; }
@@ -164,27 +182,10 @@
         .history-table th { background: var(--accent-bg); }
         .up { color: #2d8a2d; } .down { color: #c44; } .stable { color: var(--text-light); }
 
-        /* 留言 */
-        .guestbook-msg { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.78em; display: flex; gap: 6px; }
-        .guestbook-msg .gb-time { color: var(--text-light); font-size: 0.7em; white-space: nowrap; }
-        .guestbook-input-row { display: flex; gap: 6px; margin-top: 8px; }
-        .guestbook-input-row input { flex: 1; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
-
-        /* ==================== 游戏页统一优化 ==================== */
-        .game-card-title {
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .game-card-title .badge {
-            font-size: 0.65em; padding: 2px 8px; border-radius: 10px;
-            background: var(--accent-bg); color: var(--text-light);
-        }
-        .game-area {
-            position: relative; width: 100%; min-height: 170px;
-            border-radius: 12px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.15s; flex-direction: column;
-            border: 1px solid var(--border);
-        }
+        /* 游戏页 */
+        .game-card-title { display: flex; align-items: center; justify-content: space-between; }
+        .game-card-title .badge { font-size: 0.65em; padding: 2px 8px; border-radius: 10px; background: var(--accent-bg); color: var(--text-light); }
+        .game-area { position: relative; width: 100%; min-height: 170px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-direction: column; border: 1px solid var(--border); }
         .game-area.waiting { background: #c44; }
         .game-area.ready { background: #2d8a2d; }
         .game-area.idle { background: var(--card); }
@@ -196,44 +197,32 @@
         .game-stat { text-align: center; }
         .game-stat .num { font-size: 1.4em; font-weight: 600; }
         .game-stat .lbl { font-size: 0.7em; color: var(--text-light); }
-        .game-history { margin-top: 12px; font-size: 0.7em; color: var(--text-light); text-align: center; }
         .game-actions { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
 
         /* 手速游戏 */
-        .click-area {
-            position: relative; width: 100%; min-height: 200px;
-            border-radius: 12px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; border: 2px solid var(--border);
-            background: var(--card); transition: background 0.15s;
-        }
+        .click-area { position: relative; width: 100%; min-height: 200px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 2px solid var(--border); background: var(--card); transition: background 0.15s; }
         .click-area.active { border-color: var(--accent); background: var(--accent-bg); }
         .click-count { font-size: 3em; font-weight: 700; line-height: 1; }
         .click-timer { font-size: 1.2em; color: var(--text-light); margin-top: 4px; }
-        .click-target {
-            position: absolute; border-radius: 50%;
-            background: var(--accent); cursor: pointer; transition: 0.08s;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--bg); font-weight: 700; font-size: 0.7em;
-        }
+        .click-target { position: absolute; border-radius: 50%; background: var(--accent); cursor: pointer; transition: 0.08s; display: flex; align-items: center; justify-content: center; color: var(--bg); font-weight: 700; font-size: 0.7em; }
         .click-target:active { transform: scale(0.9); }
         .difficulty-selector { display: flex; gap: 4px; margin-top: 8px; justify-content: center; }
         .diff-btn { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.65em; cursor: pointer; background: none; color: var(--text); }
         .diff-btn.active { background: var(--accent); color: var(--bg); }
 
         /* 节奏点击 */
-        .rhythm-area {
-            position: relative; width: 100%; min-height: 170px;
-            border-radius: 12px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; border: 2px solid var(--border);
-            background: var(--card); transition: background 0.2s;
-        }
+        .rhythm-area { position: relative; width: 100%; min-height: 170px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 2px solid var(--border); background: var(--card); transition: background 0.2s; }
         .rhythm-area.flash { background: #2d8a2d; border-color: #2d8a2d; }
         .rhythm-area.flash .rhythm-text { color: #fff; }
         .rhythm-text { font-size: 1.2em; font-weight: 500; text-align: center; }
         .rhythm-score { font-size: 2em; font-weight: 700; margin-top: 8px; }
         .rhythm-result { font-size: 0.85em; color: var(--text-light); margin-top: 4px; }
+
+        /* 留言 */
+        .guestbook-msg { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.78em; display: flex; gap: 6px; }
+        .guestbook-msg .gb-time { color: var(--text-light); font-size: 0.7em; white-space: nowrap; }
+        .guestbook-input-row { display: flex; gap: 6px; margin-top: 8px; }
+        .guestbook-input-row input { flex: 1; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
 
         /* 弹窗 */
         .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index:999; display:flex; align-items:center; justify-content:center; }
@@ -251,6 +240,7 @@
         <button class="nav-btn" data-page="plan">计划</button>
         <button class="nav-btn" data-page="timer">计时</button>
         <button class="nav-btn" data-page="growth">成长</button>
+        <button class="nav-btn" data-page="diet">饮食</button>
         <button class="nav-btn" data-page="game">游戏</button>
         <button class="nav-btn" data-page="guestbook">留言</button>
     </div>
@@ -268,6 +258,8 @@
             <div class="plan-inline" id="todayPlanBox">
                 <div id="todayPlanContent" style="font-size:0.78em;">加载中...</div>
             </div>
+            <!-- 今日餐盘 -->
+            <div class="meal-summary" id="mealSummary"></div>
             <div class="row">
                 <button class="btn small" id="startBtn">起始日</button>
                 <button class="btn small" id="resetBtn">重置本周</button>
@@ -299,85 +291,62 @@
         <div class="card"><h2>成长记录</h2><div class="metric-selector" id="metricSelector"><span class="metric-tag active" data-metric="weight">体重</span><span class="metric-tag" data-metric="chest">胸围</span><span class="metric-tag" data-metric="arm">臂围</span><span class="metric-tag" data-metric="waist">腰围</span><span class="metric-tag" data-metric="bodyfat">体脂</span></div><div class="growth-input-row"><input type="number" id="growthValue" placeholder="输入数值" step="0.1"><button class="btn accent" id="growthAddBtn">记录</button></div><div class="growth-summary" id="growthSummary"></div><table class="history-table" id="historyTable"><thead><tr><th>日期</th><th>数值</th><th>变化</th><th>操作</th></tr></thead><tbody id="historyBody"></tbody></table><div class="row" style="justify-content:flex-end;"><button class="btn tiny" id="growthEditBtn">编辑</button><button class="btn tiny" id="clearGrowthBtn">清空</button></div></div>
     </div>
 
-    <!-- ==================== 游戏页（三个游戏统一优化） ==================== -->
-    <div class="page" id="page-game">
-
-        <!-- 游戏1：反应测试 -->
+    <!-- ==================== 饮食页 ==================== -->
+    <div class="page" id="page-diet">
         <div class="card">
-            <div class="game-card-title">
-                <h2>反应测试</h2>
-                <span class="badge">⚡ 神经反应</span>
+            <h2>饮食菜单</h2>
+            <!-- 三餐选项卡 -->
+            <div class="meal-tabs">
+                <button class="meal-tab active" data-meal="breakfast">🌅 早饭</button>
+                <button class="meal-tab" data-meal="lunch">☀️ 午饭</button>
+                <button class="meal-tab" data-meal="dinner">🌙 晚饭</button>
             </div>
-            <div class="sub">屏幕变绿后立刻点击，测出反应速度</div>
-            <div class="game-area idle" id="gameArea">
-                <span class="game-text" id="gameText">点击下方按钮开始</span>
-                <div class="game-result" id="gameResult" style="display:none;"></div>
+            <!-- 分类筛选 -->
+            <div class="category-filter" id="categoryFilter"></div>
+            <!-- 菜品网格 -->
+            <div class="dish-grid" id="dishGrid"></div>
+            <!-- 已选菜品 -->
+            <div class="selected-meals" id="selectedMeals">
+                <span>尚未选择</span>
             </div>
-            <div class="game-actions">
-                <button class="btn accent" id="gameStartBtn">开始测试</button>
+            <div class="row" style="justify-content:flex-end;">
+                <button class="btn tiny" id="clearMealBtn">清空</button>
             </div>
-            <div class="game-stats">
-                <div class="game-stat"><div class="num" id="gameBest">-</div><div class="lbl">历史最佳</div></div>
-                <div class="game-stat"><div class="num" id="gameTodayCount">0</div><div class="lbl">今日次数</div></div>
-                <div class="game-stat"><div class="num" id="gameTodayAvg">-</div><div class="lbl">今日平均</div></div>
-            </div>
-            <div class="game-history" id="gameHistory"></div>
-        </div>
 
-        <!-- 游戏2：手速挑战 -->
-        <div class="card" style="margin-top:14px;">
-            <div class="game-card-title">
-                <h2>手速挑战</h2>
-                <span class="badge">👆 点击速度</span>
-            </div>
-            <div class="sub">10秒内点击移动目标，尽可能多得分</div>
-            <div class="difficulty-selector">
-                <span style="font-size:0.65em; color:var(--text-light);">难度：</span>
-                <button class="diff-btn active" data-diff="easy">简单</button>
-                <button class="diff-btn" data-diff="medium">中等</button>
-                <button class="diff-btn" data-diff="hard">困难</button>
-            </div>
-            <div class="click-area" id="clickArea">
-                <span id="clickIdleText" style="font-size:1em; color:var(--text-light);">点击下方按钮开始</span>
-                <span id="clickScore" style="display:none;" class="click-count">0</span>
-                <span id="clickTimeLeft" style="display:none;" class="click-timer">10.0s</span>
-                <div id="clickTarget" class="click-target" style="display:none;">点</div>
-            </div>
-            <div class="game-actions">
-                <button class="btn accent" id="clickStartBtn">开始挑战</button>
-            </div>
-            <div class="game-stats">
-                <div class="game-stat"><div class="num" id="clickBest">-</div><div class="lbl">历史最高</div></div>
-                <div class="game-stat"><div class="num" id="clickLast">-</div><div class="lbl">上次得分</div></div>
+            <!-- 菜品管理 -->
+            <div class="dish-mgmt">
+                <h3 style="font-size:0.8em; margin-bottom:6px;">菜品管理</h3>
+                <div class="row">
+                    <select id="mgmtCategory"><option value="">选择分类</option></select>
+                    <input type="text" id="newDishName" placeholder="新菜品名称">
+                    <button class="btn tiny accent" id="addDishBtn">添加</button>
+                </div>
+                <div class="row" style="margin-top:4px;">
+                    <select id="deleteDishSelect"><option value="">删除已有菜品</option></select>
+                    <button class="btn tiny" id="deleteDishBtn">删除</button>
+                </div>
+                <!-- 分类管理 -->
+                <div class="category-mgmt" style="margin-top:8px;">
+                    <h3 style="font-size:0.8em; margin-bottom:4px;">分类管理</h3>
+                    <div class="cat-row">
+                        <input type="text" id="newCategoryInput" placeholder="新分类名称">
+                        <button class="btn tiny accent" id="addCategoryBtn">添加</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- 游戏3：节奏点击 -->
-        <div class="card" style="margin-top:14px;">
-            <div class="game-card-title">
-                <h2>节奏点击</h2>
-                <span class="badge">🎵 精准度</span>
-            </div>
-            <div class="sub">屏幕闪绿时立刻点击，5秒窗口内测试精准反应</div>
-            <div class="rhythm-area" id="rhythmArea">
-                <span class="rhythm-text" id="rhythmText">点击下方按钮开始</span>
-                <div class="rhythm-score" id="rhythmScore" style="display:none;">0</div>
-                <div class="rhythm-result" id="rhythmResult"></div>
-            </div>
-            <div class="game-actions">
-                <button class="btn accent" id="rhythmStartBtn">开始挑战</button>
-            </div>
-            <div class="game-stats">
-                <div class="game-stat"><div class="num" id="rhythmBest">-</div><div class="lbl">最佳精准</div></div>
-                <div class="game-stat"><div class="num" id="rhythmAvg">-</div><div class="lbl">平均偏差</div></div>
-            </div>
-        </div>
-
+    <!-- 游戏 -->
+    <div class="page" id="page-game">
+        <div class="card"><div class="game-card-title"><h2>反应测试</h2><span class="badge">⚡ 神经反应</span></div><div class="sub">屏幕变绿后立刻点击</div><div class="game-area idle" id="gameArea"><span class="game-text" id="gameText">点击下方按钮开始</span><div class="game-result" id="gameResult" style="display:none;"></div></div><div class="game-actions"><button class="btn accent" id="gameStartBtn">开始测试</button></div><div class="game-stats"><div class="game-stat"><div class="num" id="gameBest">-</div><div class="lbl">历史最佳</div></div><div class="game-stat"><div class="num" id="gameTodayCount">0</div><div class="lbl">今日次数</div></div><div class="game-stat"><div class="num" id="gameTodayAvg">-</div><div class="lbl">今日平均</div></div></div></div>
+        <div class="card" style="margin-top:14px;"><div class="game-card-title"><h2>手速挑战</h2><span class="badge">👆 点击速度</span></div><div class="sub">10秒内点击移动目标</div><div class="difficulty-selector"><span style="font-size:0.65em; color:var(--text-light);">难度：</span><button class="diff-btn active" data-diff="easy">简单</button><button class="diff-btn" data-diff="medium">中等</button><button class="diff-btn" data-diff="hard">困难</button></div><div class="click-area" id="clickArea"><span id="clickIdleText" style="font-size:1em; color:var(--text-light);">点击下方按钮开始</span><span id="clickScore" style="display:none;" class="click-count">0</span><span id="clickTimeLeft" style="display:none;" class="click-timer">10.0s</span><div id="clickTarget" class="click-target" style="display:none;">点</div></div><div class="game-actions"><button class="btn accent" id="clickStartBtn">开始挑战</button></div><div class="game-stats"><div class="game-stat"><div class="num" id="clickBest">-</div><div class="lbl">历史最高</div></div><div class="game-stat"><div class="num" id="clickLast">-</div><div class="lbl">上次得分</div></div></div></div>
+        <div class="card" style="margin-top:14px;"><div class="game-card-title"><h2>节奏点击</h2><span class="badge">🎵 精准度</span></div><div class="sub">屏幕闪绿时立刻点击</div><div class="rhythm-area" id="rhythmArea"><span class="rhythm-text" id="rhythmText">点击下方按钮开始</span><div class="rhythm-score" id="rhythmScore" style="display:none;">0</div><div class="rhythm-result" id="rhythmResult"></div></div><div class="game-actions"><button class="btn accent" id="rhythmStartBtn">开始挑战</button></div><div class="game-stats"><div class="game-stat"><div class="num" id="rhythmBest">-</div><div class="lbl">最佳精准</div></div><div class="game-stat"><div class="num" id="rhythmAvg">-</div><div class="lbl">平均偏差</div></div></div></div>
     </div>
 
     <!-- 留言 -->
     <div class="page" id="page-guestbook">
-        <div class="card"><h2>访客留言</h2><div class="sub">路过的人，留句话吧</div><div id="guestbookMessages"></div><div class="guestbook-input-row"><input type="text" id="guestbookInput" placeholder="写一句话..."><button class="btn accent small" id="guestbookSendBtn">发送</button></div><p style="font-size:0.65em; color:var(--text-light); margin-top:6px;">留言保存在你的浏览器里</p></div>
+        <div class="card"><h2>访客留言</h2><div class="sub">路过的人，留句话吧</div><div id="guestbookMessages"></div><div class="guestbook-input-row"><input type="text" id="guestbookInput" placeholder="写一句话..."><button class="btn accent small" id="guestbookSendBtn">发送</button></div></div>
     </div>
 
 </div>
@@ -389,10 +358,27 @@
 
     // ==================== 导航 ====================
     var navBtns=document.querySelectorAll('.nav-btn'), pages=document.querySelectorAll('.page');
-    navBtns.forEach(function(b){b.onclick=function(){var t=this.getAttribute('data-page');navBtns.forEach(function(x){x.classList.remove('active');});this.classList.add('active');pages.forEach(function(p){p.classList.remove('active');});var el=document.getElementById('page-'+t);if(el)el.classList.add('active');if(t==='timer')updateTimerDisplay();if(t==='growth')renderGrowthPage();if(t==='home'){renderGrid();renderTodayPlan();renderHeatmap();}if(t==='plan')initCyclePage();};});
+    navBtns.forEach(function(b){b.onclick=function(){var t=this.getAttribute('data-page');navBtns.forEach(function(x){x.classList.remove('active');});this.classList.add('active');pages.forEach(function(p){p.classList.remove('active');});var el=document.getElementById('page-'+t);if(el)el.classList.add('active');if(t==='timer')updateTimerDisplay();if(t==='growth')renderGrowthPage();if(t==='home'){renderGrid();renderTodayPlan();renderHeatmap();renderMealSummary();}if(t==='plan')initCyclePage();if(t==='diet')initDietPage();};});
 
-    // ==================== 主页 ====================
+    // ==================== 主页：打卡（每周自动重置） ====================
     var DAYS=['周一','周二','周三','周四','周五','周六','周日'], weekData=JSON.parse(localStorage.getItem('weekCheckData')||'[false,false,false,false,false,false,false]'), todayStr=new Date().toISOString().split('T')[0];
+
+    // 每周自动重置：检测是否跨周
+    function autoResetWeek() {
+        var savedWeekStart = localStorage.getItem('weekStartDate');
+        var today = new Date();
+        var diff = today.getDay() === 0 ? 6 : today.getDay() - 1;
+        var monday = new Date(today); monday.setDate(today.getDate() - diff);
+        var thisMondayStr = monday.toISOString().split('T')[0];
+        if (savedWeekStart !== thisMondayStr) {
+            // 跨周了，重置打卡
+            weekData = [false,false,false,false,false,false,false];
+            localStorage.setItem('weekCheckData', JSON.stringify(weekData));
+            localStorage.setItem('weekStartDate', thisMondayStr);
+        }
+    }
+    autoResetWeek();
+
     function getWeekDates(){var t=new Date(),d=t.getDay()===0?6:t.getDay()-1,m=new Date(t);m.setDate(t.getDate()-d);var a=[];for(var i=0;i<7;i++){var dd=new Date(m);dd.setDate(m.getDate()+i);a.push(dd);}return a;}
     function getTodayIndex(){var t=new Date();t.setHours(0,0,0,0);var d=getWeekDates();for(var i=0;i<7;i++){var dd=new Date(d[i]);dd.setHours(0,0,0,0);if(dd.getTime()===t.getTime())return i;}return -1;}
     function updateWeekStatus(){var d=getWeekDates(),t=new Date();t.setHours(0,0,0,0);for(var i=0;i<7;i++){var dd=new Date(d[i]);dd.setHours(0,0,0,0);if(dd<t){if(weekData[i]!==true)weekData[i]='missed';}else{if(weekData[i]==='missed')weekData[i]=false;}}localStorage.setItem('weekCheckData',JSON.stringify(weekData));}
@@ -423,6 +409,23 @@
     function renderHeatmap(){var g=document.getElementById('heatmapGrid');if(!g)return;var y=new Date().getFullYear();document.getElementById('heatmapYearLabel').textContent=y+'年';var yd=JSON.parse(localStorage.getItem('yearCheckData')||'{}'),td=(y%4===0&&(y%100!==0||y%400===0))?366:365;g.style.gridTemplateColumns='repeat(26, 1fr)';g.innerHTML='';for(var d=0;d<td;d++){var dt=new Date(y,0,1);dt.setDate(dt.getDate()+d);var ds=dt.toISOString().split('T')[0],c=document.createElement('div');c.className='heatmap-cell';c.style.backgroundColor=yd[ds]?'#888':'#ebedf0';c.title=ds+(yd[ds]?' ✓':'');g.appendChild(c);}}
     updateInfo();renderGrid();renderTodayPlan();renderHeatmap();
 
+    // ==================== 今日餐盘摘要 ====================
+    var mealData = JSON.parse(localStorage.getItem('mealData') || '{"breakfast":[],"lunch":[],"dinner":[]}');
+    function renderMealSummary() {
+        var el = document.getElementById('mealSummary'); if (!el) return;
+        var meals = ['breakfast','lunch','dinner'];
+        var labels = ['早饭','午饭','晚饭'];
+        var html = '';
+        for (var i = 0; i < meals.length; i++) {
+            var items = mealData[meals[i]] || [];
+            html += '<div class="meal-summary-item"><div class="meal-label">'+labels[i]+'</div><div class="meal-content">';
+            html += items.length > 0 ? items.join(' · ') : '-';
+            html += '</div></div>';
+        }
+        el.innerHTML = html;
+    }
+    renderMealSummary();
+
     // ==================== 计划 ====================
     var cyclePlanData=JSON.parse(localStorage.getItem('cyclePlanData')||'[]'),cycleDays=parseInt(localStorage.getItem('cycleDays')||'4'),cycleStartDate=localStorage.getItem('cycleStartDate')||localStorage.getItem('startDate')||'2026-04-20';
     function initCyclePage(){document.getElementById('cycleDaysInput').value=cycleDays;renderCycleTable();}
@@ -431,7 +434,7 @@
     document.getElementById('saveCycleBtn').onclick=function(){localStorage.setItem('cyclePlanData',JSON.stringify(cyclePlanData));localStorage.setItem('cycleDays',cycleDays);alert('已保存');};
     document.getElementById('resetCycleBtn').onclick=function(){var ts=new Date().toISOString().split('T')[0];if(confirm('重置起始日为今天？')){cycleStartDate=ts;localStorage.setItem('cycleStartDate',cycleStartDate);renderCycleTable();}};
 
-    // ==================== 计时器（含自定义时间） ====================
+    // ==================== 计时器 ====================
     var timerMs=0,timerInterval=null,timerRunning=false,timerMode='countdown',stopwatchLaps=[],soundMode=localStorage.getItem('soundMode')||'beep';
     document.querySelectorAll('.sound-opt').forEach(function(b){if(b.getAttribute('data-sound')===soundMode)b.classList.add('active');});
     document.querySelectorAll('.sound-opt').forEach(function(b){b.onclick=function(){document.querySelectorAll('.sound-opt').forEach(function(x){x.classList.remove('active');});this.classList.add('active');soundMode=this.getAttribute('data-sound');localStorage.setItem('soundMode',soundMode);};});
@@ -440,7 +443,7 @@
     function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}timerRunning=false;}
     function playSound(){if(soundMode==='none')return;if(soundMode==='buzz'){if(navigator.vibrate)navigator.vibrate([100,80,100,80,100]);return;}try{var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;var ctx=new AC(),now=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=1000;var t=now+i*0.1;g.gain.setValueAtTime(0.3,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.1);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+0.1);}setTimeout(function(){ctx.close();},800);}catch(e){}}
     document.querySelectorAll('.timer-mode-btn').forEach(function(b){b.onclick=function(){document.querySelectorAll('.timer-mode-btn').forEach(function(x){x.classList.remove('active');});this.classList.add('active');timerMode=this.getAttribute('data-mode');stopTimer();setTotalMs(0);stopwatchLaps=[];updateTimerDisplay();renderLaps();document.getElementById('timerPresets').style.display=timerMode==='countdown'?'flex':'none';};});
-    document.getElementById('applyCustomTime').onclick=function(){var m=parseInt(document.getElementById('customMinutes').value)||0,s=parseInt(document.getElementById('customSeconds').value)||0;if(m===0&&s===0)return;stopTimer();setTotalMs((m*60+s)*1000);updateTimerDisplay();};
+    document.getElementById('applyCustomTime').onclick=function(){var m=parseInt(document.getElementById('customMinutes').value)||0,s=parseInt(document.getElementById('customSeconds').value)||0;stopTimer();setTotalMs((m*60+s)*1000);updateTimerDisplay();};
     document.getElementById('timerStartBtn').onclick=function(){if(timerRunning)return;if(timerMode==='countdown'&&getTotalMs()<=0)return;timerRunning=true;var step=10;timerInterval=setInterval(function(){if(timerMode==='countdown'){var ms=getTotalMs();if(ms>0){ms-=step;if(ms<0)ms=0;setTotalMs(ms);}updateTimerDisplay();if(getTotalMs()<=0){stopTimer();updateTimerDisplay();playSound();}}else{setTotalMs(getTotalMs()+step);updateTimerDisplay();}},step);};
     document.getElementById('timerPauseBtn').onclick=function(){if(timerMode==='stopwatch'&&timerRunning){stopwatchLaps.push(Math.round(getTotalMs()/10));renderLaps();}stopTimer();updateTimerDisplay();};
     document.getElementById('timerResetBtn').onclick=function(){stopTimer();setTotalMs(0);stopwatchLaps=[];updateTimerDisplay();renderLaps();};
@@ -458,119 +461,199 @@
     document.getElementById('clearGrowthBtn').onclick=function(){if(confirm('清空全部记录？')){var d=getGrowthData();d[currentMetric]=[];saveGrowthData(d);renderGrowthPage();}};
     renderGrowthPage();
 
-    // ==================== 反应测试游戏 ====================
+    // ==================== 反应测试 ====================
     var gameState='idle',gameTimeout=null,gameStartTime=0,gameBest=parseInt(localStorage.getItem('reactionBest'))||0,gameRecords=JSON.parse(localStorage.getItem('reactionRecords')||'[]');
     function resetGameUI(){document.getElementById('gameArea').className='game-area idle';document.getElementById('gameText').textContent='点击下方按钮开始';document.getElementById('gameResult').style.display='none';}
-    function startGame(){if(gameState==='waiting')return;if(gameTimeout)clearTimeout(gameTimeout);gameState='waiting';var a=document.getElementById('gameArea');a.className='game-area waiting';document.getElementById('gameText').textContent='等待变绿...';document.getElementById('gameResult').style.display='none';var delay=1500+Math.floor(Math.random()*2500);gameTimeout=setTimeout(function(){gameState='ready';a.className='game-area ready';document.getElementById('gameText').textContent='点击！';gameStartTime=performance.now();},delay);}
+    function startGame(){if(gameState==='waiting')return;if(gameTimeout)clearTimeout(gameTimeout);gameState='waiting';var a=document.getElementById('gameArea');a.className='game-area waiting';document.getElementById('gameText').textContent='等待变绿...';var delay=1500+Math.floor(Math.random()*2500);gameTimeout=setTimeout(function(){gameState='ready';a.className='game-area ready';document.getElementById('gameText').textContent='点击！';gameStartTime=performance.now();},delay);}
     function handleGameClick(){if(gameState==='waiting'){if(gameTimeout)clearTimeout(gameTimeout);gameState='idle';var a=document.getElementById('gameArea');a.className='game-area idle';document.getElementById('gameText').textContent='抢跑了！再试一次';document.getElementById('gameResult').style.display='none';return;}if(gameState==='ready'){var rt=Math.round(performance.now()-gameStartTime);gameState='finished';var a=document.getElementById('gameArea');a.className='game-area idle';document.getElementById('gameText').textContent='你的反应时间';var r=document.getElementById('gameResult');r.style.display='block';r.innerHTML=rt+'<span class="game-result-unit"> ms</span>';saveReactionResult(rt);renderGameStats();}}
     function saveReactionResult(ms){if(gameBest===0||ms<gameBest){gameBest=ms;localStorage.setItem('reactionBest',gameBest);}var td=new Date().toISOString().split('T')[0];gameRecords.push({date:td,time:ms});if(gameRecords.length>200)gameRecords=gameRecords.slice(gameRecords.length-200);localStorage.setItem('reactionRecords',JSON.stringify(gameRecords));}
     function getTodayStats(){var td=new Date().toISOString().split('T')[0],tr=gameRecords.filter(function(r){return r.date===td;}),c=tr.length,avg=c>0?Math.round(tr.reduce(function(s,r){return s+r.time;},0)/c):0;return{count:c,avg:avg};}
-    function renderGameStats(){document.getElementById('gameBest').textContent=gameBest>0?gameBest+'ms':'-';var s=getTodayStats();document.getElementById('gameTodayCount').textContent=s.count;document.getElementById('gameTodayAvg').textContent=s.avg>0?s.avg+'ms':'-';var td=new Date().toISOString().split('T')[0],tr=gameRecords.filter(function(r){return r.date===td;}).reverse().slice(0,5),el=document.getElementById('gameHistory');el.textContent=tr.length>0?'最近：'+tr.map(function(r){return r.time+'ms';}).join(' · '):'';}
+    function renderGameStats(){document.getElementById('gameBest').textContent=gameBest>0?gameBest+'ms':'-';var s=getTodayStats();document.getElementById('gameTodayCount').textContent=s.count;document.getElementById('gameTodayAvg').textContent=s.avg>0?s.avg+'ms':'-';}
     document.getElementById('gameArea').addEventListener('click',function(e){if(e.target.tagName==='BUTTON')return;if(gameState==='idle')startGame();else handleGameClick();});
     document.getElementById('gameStartBtn').onclick=function(){if(gameState==='waiting')return;if(gameTimeout)clearTimeout(gameTimeout);resetGameUI();startGame();};
     renderGameStats();
 
-    // ==================== 手速点击游戏（含难度选择） ====================
+    // ==================== 手速点击 ====================
     var clickGameActive=false,clickScore=0,clickTimeLeftMs=10000,clickGameInterval=null,clickBest=parseInt(localStorage.getItem('clickBest'))||0,clickLast=parseInt(localStorage.getItem('clickLast'))||0,clickDifficulty='easy';
-    var diffSettings={easy:{size:60,speed:300},medium:{size:40,speed:200},hard:{size:25,speed:120}};
+    var diffSettings={easy:{size:60},medium:{size:40},hard:{size:25}};
     document.querySelectorAll('.diff-btn').forEach(function(b){b.onclick=function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active');});this.classList.add('active');clickDifficulty=this.getAttribute('data-diff');};});
-
-    function moveTarget(){var t=document.getElementById('clickTarget');if(!t||!clickGameActive)return;var a=document.getElementById('clickArea'),ar=a.getBoundingClientRect(),sz=diffSettings[clickDifficulty].size,mx=Math.max(0,ar.width-sz-10),my=Math.max(0,ar.height-sz-10);t.style.width=sz+'px';t.style.height=sz+'px';t.style.left=Math.floor(Math.random()*mx)+'px';t.style.top=Math.floor(Math.random()*my)+'px';t.textContent=clickDifficulty==='hard'?'':'点';}
+    function moveTarget(){var t=document.getElementById('clickTarget');if(!t||!clickGameActive)return;var a=document.getElementById('clickArea'),ar=a.getBoundingClientRect(),sz=diffSettings[clickDifficulty].size,mx=Math.max(0,ar.width-sz-10),my=Math.max(0,ar.height-sz-10);t.style.width=sz+'px';t.style.height=sz+'px';t.style.left=Math.floor(Math.random()*mx)+'px';t.style.top=Math.floor(Math.random()*my)+'px';}
     function startClickGame(){if(clickGameActive)return;clickGameActive=true;clickScore=0;clickTimeLeftMs=10000;document.getElementById('clickIdleText').style.display='none';document.getElementById('clickScore').style.display='block';document.getElementById('clickTimeLeft').style.display='block';document.getElementById('clickTarget').style.display='flex';document.getElementById('clickScore').textContent='0';document.getElementById('clickTimeLeft').textContent='10.0s';document.getElementById('clickArea').classList.add('active');document.getElementById('clickStartBtn').textContent='进行中...';document.getElementById('clickStartBtn').disabled=true;moveTarget();clickGameInterval=setInterval(function(){clickTimeLeftMs-=50;if(clickTimeLeftMs<=0){endClickGame();return;}document.getElementById('clickTimeLeft').textContent=(clickTimeLeftMs/1000).toFixed(1)+'s';},50);}
-    function endClickGame(){clickGameActive=false;if(clickGameInterval){clearInterval(clickGameInterval);clickGameInterval=null;}document.getElementById('clickTarget').style.display='none';document.getElementById('clickIdleText').style.display='block';document.getElementById('clickIdleText').textContent='得分：'+clickScore+' 次';document.getElementById('clickScore').style.display='none';document.getElementById('clickTimeLeft').style.display='none';document.getElementById('clickArea').classList.remove('active');document.getElementById('clickStartBtn').textContent='开始挑战';document.getElementById('clickStartBtn').disabled=false;clickLast=clickScore;localStorage.setItem('clickLast',clickScore);if(clickScore>clickBest){clickBest=clickScore;localStorage.setItem('clickBest',clickBest);}document.getElementById('clickBest').textContent=clickBest;document.getElementById('clickLast').textContent=clickLast;if(navigator.vibrate)navigator.vibrate(50);}
-    document.getElementById('clickTarget').addEventListener('click',function(e){e.stopPropagation();if(!clickGameActive)return;clickScore++;document.getElementById('clickScore').textContent=clickScore;moveTarget();if(navigator.vibrate)navigator.vibrate(10);});
-    document.getElementById('clickArea').addEventListener('click',function(e){if(clickGameActive&&e.target===document.getElementById('clickArea')){moveTarget();}});
+    function endClickGame(){clickGameActive=false;if(clickGameInterval){clearInterval(clickGameInterval);clickGameInterval=null;}document.getElementById('clickTarget').style.display='none';document.getElementById('clickIdleText').style.display='block';document.getElementById('clickIdleText').textContent='得分：'+clickScore+' 次';document.getElementById('clickScore').style.display='none';document.getElementById('clickTimeLeft').style.display='none';document.getElementById('clickArea').classList.remove('active');document.getElementById('clickStartBtn').textContent='开始挑战';document.getElementById('clickStartBtn').disabled=false;clickLast=clickScore;localStorage.setItem('clickLast',clickScore);if(clickScore>clickBest){clickBest=clickScore;localStorage.setItem('clickBest',clickBest);}document.getElementById('clickBest').textContent=clickBest;document.getElementById('clickLast').textContent=clickLast;}
+    document.getElementById('clickTarget').addEventListener('click',function(e){e.stopPropagation();if(!clickGameActive)return;clickScore++;document.getElementById('clickScore').textContent=clickScore;moveTarget();});
     document.getElementById('clickStartBtn').onclick=function(){if(clickGameActive)return;startClickGame();};
     document.getElementById('clickBest').textContent=clickBest>0?clickBest:'-';document.getElementById('clickLast').textContent=clickLast>0?clickLast:'-';
 
-    // ==================== 节奏点击游戏 ====================
-    var rhythmActive=false,rhythmScore=0,rhythmTotal=0,rhythmDiffs=[],rhythmTimeout=null,rhythmFlashTimeout=null,rhythmBest=parseInt(localStorage.getItem('rhythmBest'))||0,rhythmAvgData=JSON.parse(localStorage.getItem('rhythmAvgData')||'[]');
+    // ==================== 节奏点击 ====================
+    var rhythmActive=false,rhythmScore=0,rhythmTotal=0,rhythmTimeout=null,rhythmFlashTimeout=null,rhythmBest=parseInt(localStorage.getItem('rhythmBest'))||0,rhythmAvgData=JSON.parse(localStorage.getItem('rhythmAvgData')||'[]');
+    function startRhythmGame(){if(rhythmActive)return;rhythmActive=true;rhythmScore=0;rhythmTotal=0;document.getElementById('rhythmText').textContent='等待闪烁...';document.getElementById('rhythmScore').style.display='none';document.getElementById('rhythmResult').textContent='';document.getElementById('rhythmStartBtn').textContent='进行中...';document.getElementById('rhythmStartBtn').disabled=true;document.getElementById('rhythmArea').classList.remove('flash');scheduleNextFlash();}
+    function scheduleNextFlash(){if(!rhythmActive)return;var delay=800+Math.floor(Math.random()*2200);rhythmTimeout=setTimeout(function(){if(!rhythmActive)return;document.getElementById('rhythmArea').classList.add('flash');document.getElementById('rhythmText').textContent='点击！';rhythmFlashTimeout=setTimeout(function(){if(!rhythmActive)return;document.getElementById('rhythmArea').classList.remove('flash');document.getElementById('rhythmText').textContent='等待闪烁...';rhythmTotal++;if(rhythmTotal>=10){endRhythmGame();return;}scheduleNextFlash();},5000);},delay);}
+    function handleRhythmClick(){if(!rhythmActive)return;var a=document.getElementById('rhythmArea');if(a.classList.contains('flash')){if(rhythmFlashTimeout)clearTimeout(rhythmFlashTimeout);rhythmScore++;rhythmTotal++;a.classList.remove('flash');document.getElementById('rhythmText').textContent='等待闪烁...';if(rhythmTotal>=10){endRhythmGame();return;}scheduleNextFlash();}}
+    function endRhythmGame(){rhythmActive=false;if(rhythmTimeout)clearTimeout(rhythmTimeout);if(rhythmFlashTimeout)clearTimeout(rhythmFlashTimeout);document.getElementById('rhythmArea').classList.remove('flash');document.getElementById('rhythmText').textContent='得分：'+rhythmScore+'/'+rhythmTotal;document.getElementById('rhythmScore').style.display='block';document.getElementById('rhythmScore').textContent=rhythmScore+'/'+rhythmTotal;document.getElementById('rhythmStartBtn').textContent='开始挑战';document.getElementById('rhythmStartBtn').disabled=false;if(rhythmScore>rhythmBest){rhythmBest=rhythmScore;localStorage.setItem('rhythmBest',rhythmBest);}document.getElementById('rhythmBest').textContent=rhythmBest>0?rhythmBest+'次':'-';}
+    document.getElementById('rhythmArea').addEventListener('click',function(){if(rhythmActive)handleRhythmClick();});
+    document.getElementById('rhythmStartBtn').onclick=function(){if(rhythmActive)return;startRhythmGame();};
+    document.getElementById('rhythmBest').textContent=rhythmBest>0?rhythmBest+'次':'-';
 
-    function startRhythmGame(){
-        if(rhythmActive)return;
-        rhythmActive=true;rhythmScore=0;rhythmTotal=0;rhythmDiffs=[];
-        document.getElementById('rhythmText').textContent='等待闪烁...';
-        document.getElementById('rhythmScore').style.display='none';
-        document.getElementById('rhythmResult').textContent='';
-        document.getElementById('rhythmStartBtn').textContent='进行中...';
-        document.getElementById('rhythmStartBtn').disabled=true;
-        document.getElementById('rhythmArea').classList.remove('flash');
-        scheduleNextFlash();
+    // ==================== 饮食模块 ====================
+    var dishes = JSON.parse(localStorage.getItem('dishes') || '[]');
+    var categories = JSON.parse(localStorage.getItem('dishCategories') || '["主食","肉类","蔬菜","水果","饮品","零食"]');
+    var mealData2 = JSON.parse(localStorage.getItem('mealData') || '{"breakfast":[],"lunch":[],"dinner":[]}');
+    var currentMeal = 'breakfast';
+    var currentCatFilter = '';
+
+    // 初始化默认菜品
+    if (dishes.length === 0) {
+        dishes = [
+            { name: '米饭', cat: '主食' }, { name: '面条', cat: '主食' }, { name: '馒头', cat: '主食' },
+            { name: '鸡胸肉', cat: '肉类' }, { name: '牛肉', cat: '肉类' }, { name: '鸡蛋', cat: '肉类' },
+            { name: '西兰花', cat: '蔬菜' }, { name: '菠菜', cat: '蔬菜' },
+            { name: '苹果', cat: '水果' }, { name: '香蕉', cat: '水果' },
+            { name: '牛奶', cat: '饮品' }, { name: '咖啡', cat: '饮品' }
+        ];
+        localStorage.setItem('dishes', JSON.stringify(dishes));
     }
 
-    function scheduleNextFlash(){
-        if(!rhythmActive)return;
-        var delay=800+Math.floor(Math.random()*2200);
-        rhythmTimeout=setTimeout(function(){
-            if(!rhythmActive)return;
-            document.getElementById('rhythmArea').classList.add('flash');
-            document.getElementById('rhythmText').textContent='点击！';
-            rhythmFlashTimeout=setTimeout(function(){
-                if(!rhythmActive)return;
-                document.getElementById('rhythmArea').classList.remove('flash');
-                document.getElementById('rhythmText').textContent='等待闪烁...';
-                rhythmDiffs.push(999);
-                rhythmTotal++;
-                updateRhythmDisplay();
-                scheduleNextFlash();
-            },5000);
-        },delay);
+    function initDietPage() {
+        renderMealTabs();
+        renderCategoryFilter();
+        renderDishGrid();
+        renderSelectedMeals();
+        renderMgmtSelects();
     }
 
-    function handleRhythmClick(){
-        if(!rhythmActive)return;
-        var area=document.getElementById('rhythmArea');
-        if(area.classList.contains('flash')){
-            if(rhythmFlashTimeout)clearTimeout(rhythmFlashTimeout);
-            var reaction=Math.round(performance.now());
-            rhythmDiffs.push(reaction%500);
-            rhythmScore++;
-            rhythmTotal++;
-            area.classList.remove('flash');
-            document.getElementById('rhythmText').textContent='等待闪烁...';
-            updateRhythmDisplay();
-            if(navigator.vibrate)navigator.vibrate(10);
-            if(rhythmTotal>=10){endRhythmGame();return;}
-            scheduleNextFlash();
-        }else{
-            rhythmDiffs.push(999);
-            rhythmTotal++;
-            updateRhythmDisplay();
-            if(rhythmTotal>=10){endRhythmGame();return;}
+    function renderMealTabs() {
+        document.querySelectorAll('.meal-tab').forEach(function(t) {
+            t.classList.remove('active');
+            if (t.getAttribute('data-meal') === currentMeal) t.classList.add('active');
+        });
+    }
+
+    function renderCategoryFilter() {
+        var el = document.getElementById('categoryFilter');
+        el.innerHTML = '<button class="cat-tag' + (currentCatFilter === '' ? ' active' : '') + '" onclick="window.setCatFilter(\'\')">全部</button>';
+        for (var i = 0; i < categories.length; i++) {
+            el.innerHTML += '<button class="cat-tag' + (currentCatFilter === categories[i] ? ' active' : '') + '" onclick="window.setCatFilter(\'' + categories[i] + '\')">' + categories[i] + '</button>';
         }
     }
 
-    function updateRhythmDisplay(){
-        document.getElementById('rhythmScore').style.display='block';
-        document.getElementById('rhythmScore').textContent=rhythmScore+'/'+rhythmTotal;
+    window.setCatFilter = function(cat) {
+        currentCatFilter = cat;
+        renderCategoryFilter();
+        renderDishGrid();
+    };
+
+    function renderDishGrid() {
+        var el = document.getElementById('dishGrid');
+        var filtered = dishes.filter(function(d) {
+            return currentCatFilter === '' || d.cat === currentCatFilter;
+        });
+        var selected = mealData2[currentMeal] || [];
+        el.innerHTML = '';
+        for (var i = 0; i < filtered.length; i++) {
+            var isSel = selected.indexOf(filtered[i].name) !== -1;
+            el.innerHTML += '<span class="dish-item' + (isSel ? ' selected' : '') + '" onclick="window.toggleDish(\'' + filtered[i].name + '\')">' + filtered[i].name + '</span>';
+        }
+        if (filtered.length === 0) {
+            el.innerHTML = '<span style="color:var(--text-light); font-size:0.75em;">暂无菜品，在下方添加</span>';
+        }
     }
 
-    function endRhythmGame(){
-        rhythmActive=false;
-        if(rhythmTimeout)clearTimeout(rhythmTimeout);
-        if(rhythmFlashTimeout)clearTimeout(rhythmFlashTimeout);
-        document.getElementById('rhythmArea').classList.remove('flash');
-        document.getElementById('rhythmText').textContent='挑战结束';
-        document.getElementById('rhythmScore').style.display='block';
-        document.getElementById('rhythmScore').textContent=rhythmScore+'/'+rhythmTotal;
-        document.getElementById('rhythmStartBtn').textContent='开始挑战';
-        document.getElementById('rhythmStartBtn').disabled=false;
-        var validDiffs=rhythmDiffs.filter(function(d){return d<900;});
-        var avgDiff=validDiffs.length>0?Math.round(validDiffs.reduce(function(s,d){return s+d;},0)/validDiffs.length):999;
-        if(validDiffs.length>0 && (rhythmBest===0||validDiffs.length>rhythmBest)){rhythmBest=validDiffs.length;localStorage.setItem('rhythmBest',rhythmBest);}
-        rhythmAvgData.push(avgDiff);if(rhythmAvgData.length>50)rhythmAvgData=rhythmAvgData.slice(rhythmAvgData.length-50);
-        localStorage.setItem('rhythmAvgData',JSON.stringify(rhythmAvgData));
-        var allAvg=Math.round(rhythmAvgData.reduce(function(s,d){return s+d;},0)/rhythmAvgData.length);
-        document.getElementById('rhythmBest').textContent=rhythmBest>0?rhythmBest+'次':' -';
-        document.getElementById('rhythmAvg').textContent=allAvg<900?allAvg+'ms':' -';
-        document.getElementById('rhythmResult').textContent=validDiffs.length>0?'平均响应：'+avgDiff+'ms':'';
-        if(navigator.vibrate)navigator.vibrate([100,80,100]);
+    window.toggleDish = function(name) {
+        var sel = mealData2[currentMeal] || [];
+        var idx = sel.indexOf(name);
+        if (idx === -1) sel.push(name);
+        else sel.splice(idx, 1);
+        mealData2[currentMeal] = sel;
+        localStorage.setItem('mealData', JSON.stringify(mealData2));
+        renderDishGrid();
+        renderSelectedMeals();
+        renderMealSummary();
+    };
+
+    function renderSelectedMeals() {
+        var sel = mealData2[currentMeal] || [];
+        var el = document.getElementById('selectedMeals');
+        el.innerHTML = sel.length > 0 ? sel.join(' · ') : '<span>尚未选择</span>';
     }
 
-    document.getElementById('rhythmArea').addEventListener('click',function(){if(rhythmActive)handleRhythmClick();});
-    document.getElementById('rhythmStartBtn').onclick=function(){if(rhythmActive)return;startRhythmGame();};
-    if(rhythmAvgData.length>0){var aa=Math.round(rhythmAvgData.reduce(function(s,d){return s+d;},0)/rhythmAvgData.length);document.getElementById('rhythmAvg').textContent=aa<900?aa+'ms':' -';}
-    document.getElementById('rhythmBest').textContent=rhythmBest>0?rhythmBest+'次':' -';
+    document.getElementById('clearMealBtn').onclick = function() {
+        mealData2[currentMeal] = [];
+        localStorage.setItem('mealData', JSON.stringify(mealData2));
+        renderDishGrid();
+        renderSelectedMeals();
+        renderMealSummary();
+    };
+
+    document.querySelectorAll('.meal-tab').forEach(function(t) {
+        t.onclick = function() {
+            currentMeal = this.getAttribute('data-meal');
+            renderMealTabs();
+            renderDishGrid();
+            renderSelectedMeals();
+        };
+    });
+
+    function renderMgmtSelects() {
+        var catSel = document.getElementById('mgmtCategory');
+        catSel.innerHTML = '<option value="">选择分类</option>';
+        for (var i = 0; i < categories.length; i++) {
+            catSel.innerHTML += '<option value="' + categories[i] + '">' + categories[i] + '</option>';
+        }
+        var dishSel = document.getElementById('deleteDishSelect');
+        dishSel.innerHTML = '<option value="">删除已有菜品</option>';
+        for (var i = 0; i < dishes.length; i++) {
+            dishSel.innerHTML += '<option value="' + dishes[i].name + '">' + dishes[i].name + ' (' + dishes[i].cat + ')</option>';
+        }
+    }
+
+    document.getElementById('addDishBtn').onclick = function() {
+        var cat = document.getElementById('mgmtCategory').value;
+        var name = document.getElementById('newDishName').value.trim();
+        if (!cat) return alert('请选择分类');
+        if (!name) return alert('请输入菜品名称');
+        // 检查重复
+        for (var i = 0; i < dishes.length; i++) {
+            if (dishes[i].name === name && dishes[i].cat === cat) return alert('该菜品已存在');
+        }
+        dishes.push({ name: name, cat: cat });
+        localStorage.setItem('dishes', JSON.stringify(dishes));
+        document.getElementById('newDishName').value = '';
+        renderDishGrid();
+        renderMgmtSelects();
+    };
+
+    document.getElementById('deleteDishBtn').onclick = function() {
+        var name = document.getElementById('deleteDishSelect').value;
+        if (!name) return alert('请选择要删除的菜品');
+        dishes = dishes.filter(function(d) { return d.name !== name; });
+        localStorage.setItem('dishes', JSON.stringify(dishes));
+        // 同时从三餐中移除
+        ['breakfast','lunch','dinner'].forEach(function(m) {
+            var sel = mealData2[m] || [];
+            var idx = sel.indexOf(name);
+            if (idx !== -1) { sel.splice(idx, 1); mealData2[m] = sel; }
+        });
+        localStorage.setItem('mealData', JSON.stringify(mealData2));
+        renderDishGrid();
+        renderSelectedMeals();
+        renderMealSummary();
+        renderMgmtSelects();
+    };
+
+    document.getElementById('addCategoryBtn').onclick = function() {
+        var name = document.getElementById('newCategoryInput').value.trim();
+        if (!name) return alert('请输入分类名称');
+        if (categories.indexOf(name) !== -1) return alert('该分类已存在');
+        categories.push(name);
+        localStorage.setItem('dishCategories', JSON.stringify(categories));
+        document.getElementById('newCategoryInput').value = '';
+        renderCategoryFilter();
+        renderMgmtSelects();
+    };
+
+    document.getElementById('deleteDishSelect').addEventListener('change', function() {
+        // 仅用于选择
+    });
 
     // ==================== 留言 ====================
     var guestbook=JSON.parse(localStorage.getItem('guestbookMessages')||'[]');
