@@ -32,6 +32,7 @@
             padding: 24px 16px; min-height: 100vh;
             transition: background 0.4s, color 0.4s;
             -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
         .container { max-width: 520px; width: 100%; }
 
@@ -82,27 +83,18 @@
         .cell.checked .day-name, .cell.checked .day-date,
         .cell.checked .day-icon, .cell.checked .day-label { color: var(--bg); }
         .cell.missed { opacity: 0.35; cursor: not-allowed; }
-        .cell.today { border-width: 2px; border-color: var(--accent); }
+        .cell.today { border-width: 2px; }
         .day-name { font-weight: 600; font-size: 0.72em; }
         .day-date { font-size: 0.62em; color: var(--text-light); margin: 3px 0 5px; }
         .day-icon { font-size: 1.1em; margin-bottom: 3px; }
         .day-label { font-size: 0.62em; color: var(--text-light); font-weight: 500; }
 
         .info-row { display: flex; gap: 8px; justify-content: center; align-items: center; margin: 8px 0; }
-        .stat-box {
-            background: var(--accent-bg); padding: 7px 18px; border-radius: 20px;
-            font-size: 0.8em; font-weight: 500;
-        }
-
-        .plan-inline {
-            border-left: 2px solid var(--accent); padding: 8px 14px;
-            margin-top: 8px; font-size: 0.82em;
-        }
+        .stat-box { background: var(--accent-bg); padding: 7px 18px; border-radius: 20px; font-size: 0.8em; font-weight: 500; }
+        .plan-inline { border-left: 2px solid var(--accent); padding: 8px 14px; margin-top: 8px; font-size: 0.82em; }
 
         /* 微习惯 */
-        .habit-item {
-            display: flex; align-items: center; justify-content: space-between; padding: 7px 0;
-        }
+        .habit-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; }
         .habit-check {
             width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border);
             cursor: pointer; display: flex; align-items: center; justify-content: center;
@@ -113,25 +105,16 @@
         .habit-del { color: var(--text-light); cursor: pointer; font-size: 0.75em; transition: 0.2s; }
         .habit-del:hover { color: #e55; }
         .habit-add-row { display: flex; gap: 6px; margin-top: 8px; }
-        .habit-add-row input {
-            flex: 1; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px;
-            font-size: 0.78em; background: var(--card); color: var(--text);
-        }
+        .habit-add-row input { flex: 1; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
 
         /* 日志 */
-        .log-item {
-            padding: 8px 0; border-bottom: 1px solid var(--border);
-            display: flex; gap: 8px; font-size: 0.78em;
-        }
+        .log-item { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; font-size: 0.78em; }
         .log-item:last-child { border-bottom: none; }
         .log-date { color: var(--text-light); white-space: nowrap; min-width: 65px; }
         .log-note { flex: 1; }
         .log-empty { color: var(--text-light); font-style: italic; font-size: 0.78em; text-align: center; padding: 12px 0; }
         .log-search { margin-bottom: 10px; }
-        .log-search input {
-            width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px;
-            font-size: 0.78em; background: var(--card); color: var(--text);
-        }
+        .log-search input { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
 
         /* 热力图 */
         .heatmap-wrapper { display: flex; justify-content: center; margin: 8px 0; }
@@ -142,10 +125,7 @@
 
         /* 计划 */
         .cycle-config { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; background: var(--accent-bg); padding: 10px 14px; border-radius: 10px; }
-        .cycle-config input[type="number"] {
-            width: 52px; padding: 6px; border: 1px solid var(--border); border-radius: 6px;
-            text-align: center; font-size: 0.85em; background: var(--card); color: var(--text);
-        }
+        .cycle-config input[type="number"] { width: 52px; padding: 6px; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-size: 0.85em; background: var(--card); color: var(--text); }
         .cycle-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.75em; }
         .cycle-table th, .cycle-table td { border: 1px solid var(--border); padding: 8px 4px; text-align: center; }
         .cycle-table th { background: var(--accent-bg); font-weight: 500; }
@@ -155,23 +135,18 @@
         .rest-tag.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 
         /* 计时 */
-        .timer-display { font-size: 2.6em; font-weight: 300; text-align: center; padding: 18px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+        .timer-display { font-size: 2.4em; font-weight: 300; text-align: center; padding: 16px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+        .timer-display .ms { font-size: 0.45em; font-weight: 400; color: var(--text-light); margin-left: 4px; }
         .timer-mode-selector { display: flex; gap: 6px; margin-bottom: 14px; }
-        .timer-mode-btn {
-            flex: 1; padding: 7px; border: 1px solid var(--border); border-radius: 8px;
-            background: none; cursor: pointer; font-size: 0.75em; color: var(--text); transition: 0.2s;
-        }
+        .timer-mode-btn { flex: 1; padding: 7px; border: 1px solid var(--border); border-radius: 8px; background: none; cursor: pointer; font-size: 0.75em; color: var(--text); transition: 0.2s; }
         .timer-mode-btn.active { background: var(--accent); color: var(--bg); }
         .timer-controls { display: flex; gap: 8px; justify-content: center; }
         .timer-presets { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
         .preset-btn { background: var(--accent-bg); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; font-size: 0.68em; cursor: pointer; color: var(--text); }
-
-        /* 音效选择 */
+        .custom-time-row { display: flex; gap: 4px; justify-content: center; align-items: center; margin-top: 6px; }
+        .custom-time-row input { width: 50px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-size: 0.7em; background: var(--card); color: var(--text); }
         .sound-select { display: flex; gap: 4px; justify-content: center; margin-top: 8px; flex-wrap: wrap; }
-        .sound-opt {
-            padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
-            font-size: 0.65em; cursor: pointer; background: none; color: var(--text);
-        }
+        .sound-opt { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.65em; cursor: pointer; background: none; color: var(--text); }
         .sound-opt.active { background: var(--accent); color: var(--bg); }
 
         /* 成长 */
@@ -190,28 +165,80 @@
         .up { color: #2d8a2d; } .down { color: #c44; } .stable { color: var(--text-light); }
 
         /* 留言 */
-        .guestbook-msg {
-            padding: 8px 0; border-bottom: 1px solid var(--border);
-            font-size: 0.78em; display: flex; gap: 6px;
-        }
+        .guestbook-msg { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.78em; display: flex; gap: 6px; }
         .guestbook-msg .gb-time { color: var(--text-light); font-size: 0.7em; white-space: nowrap; }
         .guestbook-input-row { display: flex; gap: 6px; margin-top: 8px; }
         .guestbook-input-row input { flex: 1; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.78em; background: var(--card); color: var(--text); }
 
+        /* ==================== 游戏页统一优化 ==================== */
+        .game-card-title {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .game-card-title .badge {
+            font-size: 0.65em; padding: 2px 8px; border-radius: 10px;
+            background: var(--accent-bg); color: var(--text-light);
+        }
+        .game-area {
+            position: relative; width: 100%; min-height: 170px;
+            border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.15s; flex-direction: column;
+            border: 1px solid var(--border);
+        }
+        .game-area.waiting { background: #c44; }
+        .game-area.ready { background: #2d8a2d; }
+        .game-area.idle { background: var(--card); }
+        .game-text { font-size: 1.1em; font-weight: 500; text-align: center; }
+        .game-area.ready .game-text, .game-area.waiting .game-text { color: #fff; }
+        .game-result { font-size: 1.8em; font-weight: 300; margin: 6px 0; }
+        .game-result-unit { font-size: 0.5em; color: var(--text-light); }
+        .game-stats { display: flex; gap: 20px; justify-content: center; margin-top: 10px; font-size: 0.78em; }
+        .game-stat { text-align: center; }
+        .game-stat .num { font-size: 1.4em; font-weight: 600; }
+        .game-stat .lbl { font-size: 0.7em; color: var(--text-light); }
+        .game-history { margin-top: 12px; font-size: 0.7em; color: var(--text-light); text-align: center; }
+        .game-actions { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
+
+        /* 手速游戏 */
+        .click-area {
+            position: relative; width: 100%; min-height: 200px;
+            border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; border: 2px solid var(--border);
+            background: var(--card); transition: background 0.15s;
+        }
+        .click-area.active { border-color: var(--accent); background: var(--accent-bg); }
+        .click-count { font-size: 3em; font-weight: 700; line-height: 1; }
+        .click-timer { font-size: 1.2em; color: var(--text-light); margin-top: 4px; }
+        .click-target {
+            position: absolute; border-radius: 50%;
+            background: var(--accent); cursor: pointer; transition: 0.08s;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--bg); font-weight: 700; font-size: 0.7em;
+        }
+        .click-target:active { transform: scale(0.9); }
+        .difficulty-selector { display: flex; gap: 4px; margin-top: 8px; justify-content: center; }
+        .diff-btn { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.65em; cursor: pointer; background: none; color: var(--text); }
+        .diff-btn.active { background: var(--accent); color: var(--bg); }
+
+        /* 节奏点击 */
+        .rhythm-area {
+            position: relative; width: 100%; min-height: 170px;
+            border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; border: 2px solid var(--border);
+            background: var(--card); transition: background 0.2s;
+        }
+        .rhythm-area.flash { background: #2d8a2d; border-color: #2d8a2d; }
+        .rhythm-area.flash .rhythm-text { color: #fff; }
+        .rhythm-text { font-size: 1.2em; font-weight: 500; text-align: center; }
+        .rhythm-score { font-size: 2em; font-weight: 700; margin-top: 8px; }
+        .rhythm-result { font-size: 0.85em; color: var(--text-light); margin-top: 4px; }
+
         /* 弹窗 */
-        .modal-overlay {
-            position: fixed; top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.4); z-index:999; display:flex; align-items:center; justify-content:center;
-        }
-        .modal-box {
-            background: var(--card); padding: 24px; border-radius: 14px;
-            width: 90%; max-width: 380px; text-align: center; border: 1px solid var(--border);
-        }
-        .modal-box textarea {
-            width:100%; padding:10px; border:1px solid var(--border); border-radius:8px;
-            font-size:0.82em; resize:vertical; min-height:50px; margin:10px 0;
-            font-family:inherit; background:var(--bg); color:var(--text);
-        }
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index:999; display:flex; align-items:center; justify-content:center; }
+        .modal-box { background: var(--card); padding: 24px; border-radius: 14px; width: 90%; max-width: 380px; text-align: center; border: 1px solid var(--border); }
+        .modal-box textarea { width:100%; padding:10px; border:1px solid var(--border); border-radius:8px; font-size:0.82em; resize:vertical; min-height:50px; margin:10px 0; font-family:inherit; background:var(--bg); color:var(--text); }
 
         .foot { text-align:center; color:var(--text-light); font-size:0.68em; margin-top:18px; opacity:0.6; }
     </style>
@@ -224,6 +251,7 @@
         <button class="nav-btn" data-page="plan">计划</button>
         <button class="nav-btn" data-page="timer">计时</button>
         <button class="nav-btn" data-page="growth">成长</button>
+        <button class="nav-btn" data-page="game">游戏</button>
         <button class="nav-btn" data-page="guestbook">留言</button>
     </div>
 
@@ -250,537 +278,304 @@
             </div>
         </div>
         <div class="grid" id="grid"></div>
-
-        <!-- 微习惯 -->
-        <div class="card" style="margin-top:14px;">
-            <h2>今日微习惯</h2>
-            <div id="habitsList"></div>
-            <div class="habit-add-row">
-                <input type="text" id="newHabitInput" placeholder="添加新习惯...">
-                <button class="btn accent small" id="saveHabitBtn">保存</button>
-            </div>
-        </div>
-
-        <!-- 训练日志 + 搜索 -->
-        <div class="card" style="margin-top:14px;">
-            <div style="display:flex; align-items:center; justify-content:space-between;">
-                <h2>训练日志</h2>
-            </div>
-            <div class="log-search"><input type="text" id="logSearchInput" placeholder="搜索日志..."></div>
-            <div id="logList"><div class="log-empty">暂无记录</div></div>
-        </div>
-
-        <!-- 热力图 -->
-        <div class="card" style="margin-top:14px; text-align:center;">
-            <h2>年度记录</h2>
-            <div class="sub" id="heatmapYearLabel">2026年</div>
-            <div class="heatmap-wrapper"><div class="heatmap-grid" id="heatmapGrid"></div></div>
-            <div class="heatmap-legend">
-                <span style="background:#ebedf0;"></span> 未打卡
-                <span style="background:#888;"></span> 已打卡
-            </div>
-        </div>
+        <div class="card" style="margin-top:14px;"><h2>今日微习惯</h2><div id="habitsList"></div><div class="habit-add-row"><input type="text" id="newHabitInput" placeholder="添加新习惯..."><button class="btn accent small" id="saveHabitBtn">保存</button></div></div>
+        <div class="card" style="margin-top:14px;"><div style="display:flex; align-items:center; justify-content:space-between;"><h2>训练日志</h2></div><div class="log-search"><input type="text" id="logSearchInput" placeholder="搜索日志..."></div><div id="logList"><div class="log-empty">暂无记录</div></div></div>
+        <div class="card" style="margin-top:14px; text-align:center;"><h2>年度记录</h2><div class="sub" id="heatmapYearLabel">2026年</div><div class="heatmap-wrapper"><div class="heatmap-grid" id="heatmapGrid"></div></div><div class="heatmap-legend"><span style="background:#ebedf0;"></span> 未打卡<span style="background:#888;"></span> 已打卡</div></div>
         <div class="foot">安静的记录，安心的陪伴</div>
     </div>
 
     <!-- 计划 -->
     <div class="page" id="page-plan">
-        <div class="card">
-            <h2>循环训练计划</h2>
-            <div class="cycle-config">
-                <label style="font-size:0.75em;">循环天数</label>
-                <input type="number" id="cycleDaysInput" min="1" max="14" value="4">
-                <button class="btn accent small" id="applyCycleBtn">应用</button>
-                <span style="font-size:0.7em; color:var(--text-light); margin-left:auto;" id="cycleInfo"></span>
-            </div>
-            <table class="cycle-table">
-                <thead><tr><th>第N天</th><th>状态</th><th>训练部位</th><th>动作列表</th></tr></thead>
-                <tbody id="cycleBody"></tbody>
-            </table>
-            <div class="row" style="justify-content:space-between;">
-                <button class="btn small" id="resetCycleBtn">重置起始日</button>
-                <button class="btn accent small" id="saveCycleBtn">保存</button>
-            </div>
-        </div>
+        <div class="card"><h2>循环训练计划</h2><div class="cycle-config"><label style="font-size:0.75em;">循环天数</label><input type="number" id="cycleDaysInput" min="1" max="14" value="4"><button class="btn accent small" id="applyCycleBtn">应用</button><span style="font-size:0.7em; color:var(--text-light); margin-left:auto;" id="cycleInfo"></span></div><table class="cycle-table"><thead><tr><th>第N天</th><th>状态</th><th>训练部位</th><th>动作列表</th></tr></thead><tbody id="cycleBody"></tbody></table><div class="row" style="justify-content:space-between;"><button class="btn small" id="resetCycleBtn">重置起始日</button><button class="btn accent small" id="saveCycleBtn">保存</button></div></div>
     </div>
 
     <!-- 计时 -->
     <div class="page" id="page-timer">
-        <div class="card">
-            <h2>训练计时器</h2>
-            <div class="timer-mode-selector">
-                <button class="timer-mode-btn active" data-mode="countdown">倒计时</button>
-                <button class="timer-mode-btn" data-mode="stopwatch">秒表</button>
-            </div>
-            <div class="timer-display" id="timerDisplay">00:00</div>
-            <div class="timer-controls">
-                <button class="btn accent" id="timerStartBtn">开始</button>
-                <button class="btn" id="timerPauseBtn">暂停</button>
-                <button class="btn" id="timerResetBtn">重置</button>
-            </div>
-            <div class="timer-presets" id="timerPresets">
-                <button class="preset-btn" data-seconds="30">30s</button>
-                <button class="preset-btn" data-seconds="60">1m</button>
-                <button class="preset-btn" data-seconds="90">1.5m</button>
-                <button class="preset-btn" data-seconds="120">2m</button>
-                <button class="preset-btn" data-seconds="180">3m</button>
-                <button class="preset-btn" data-seconds="300">5m</button>
-            </div>
-            <div class="sound-select">
-                <span style="font-size:0.65em; color:var(--text-light);">提示音：</span>
-                <button class="sound-opt active" data-sound="beep">嘀嘀</button>
-                <button class="sound-opt" data-sound="buzz">震动</button>
-                <button class="sound-opt" data-sound="none">静音</button>
-            </div>
-            <div id="stopwatchLaps" style="margin-top:10px; font-size:0.75em; color:var(--text-light);"></div>
-        </div>
+        <div class="card"><h2>训练计时器</h2><div class="timer-mode-selector"><button class="timer-mode-btn active" data-mode="countdown">倒计时</button><button class="timer-mode-btn" data-mode="stopwatch">秒表</button></div><div class="timer-display"><span id="timerMain">00:00</span><span class="ms" id="timerMs">.00</span></div><div class="timer-controls"><button class="btn accent" id="timerStartBtn">开始</button><button class="btn" id="timerPauseBtn">暂停</button><button class="btn" id="timerResetBtn">重置</button></div><div class="timer-presets" id="timerPresets"><button class="preset-btn" data-seconds="30">30s</button><button class="preset-btn" data-seconds="60">1m</button><button class="preset-btn" data-seconds="90">1.5m</button><button class="preset-btn" data-seconds="120">2m</button><button class="preset-btn" data-seconds="180">3m</button><button class="preset-btn" data-seconds="300">5m</button></div><div class="custom-time-row"><span style="font-size:0.68em; color:var(--text-light);">自定义：</span><input type="number" id="customMinutes" value="0" min="0" max="99" placeholder="分"><span style="font-size:0.68em;">分</span><input type="number" id="customSeconds" value="0" min="0" max="59" placeholder="秒"><span style="font-size:0.68em;">秒</span><button class="btn tiny accent" id="applyCustomTime">设置</button></div><div class="sound-select"><span style="font-size:0.65em; color:var(--text-light);">提示音：</span><button class="sound-opt active" data-sound="beep">嘀嘀</button><button class="sound-opt" data-sound="buzz">震动</button><button class="sound-opt" data-sound="none">静音</button></div><div id="stopwatchLaps" style="margin-top:10px; font-size:0.75em; color:var(--text-light);"></div></div>
     </div>
 
     <!-- 成长 -->
     <div class="page" id="page-growth">
+        <div class="card"><h2>成长记录</h2><div class="metric-selector" id="metricSelector"><span class="metric-tag active" data-metric="weight">体重</span><span class="metric-tag" data-metric="chest">胸围</span><span class="metric-tag" data-metric="arm">臂围</span><span class="metric-tag" data-metric="waist">腰围</span><span class="metric-tag" data-metric="bodyfat">体脂</span></div><div class="growth-input-row"><input type="number" id="growthValue" placeholder="输入数值" step="0.1"><button class="btn accent" id="growthAddBtn">记录</button></div><div class="growth-summary" id="growthSummary"></div><table class="history-table" id="historyTable"><thead><tr><th>日期</th><th>数值</th><th>变化</th><th>操作</th></tr></thead><tbody id="historyBody"></tbody></table><div class="row" style="justify-content:flex-end;"><button class="btn tiny" id="growthEditBtn">编辑</button><button class="btn tiny" id="clearGrowthBtn">清空</button></div></div>
+    </div>
+
+    <!-- ==================== 游戏页（三个游戏统一优化） ==================== -->
+    <div class="page" id="page-game">
+
+        <!-- 游戏1：反应测试 -->
         <div class="card">
-            <h2>成长记录</h2>
-            <div class="metric-selector" id="metricSelector">
-                <span class="metric-tag active" data-metric="weight">体重</span>
-                <span class="metric-tag" data-metric="chest">胸围</span>
-                <span class="metric-tag" data-metric="arm">臂围</span>
-                <span class="metric-tag" data-metric="waist">腰围</span>
-                <span class="metric-tag" data-metric="bodyfat">体脂</span>
+            <div class="game-card-title">
+                <h2>反应测试</h2>
+                <span class="badge">⚡ 神经反应</span>
             </div>
-            <div class="growth-input-row">
-                <input type="number" id="growthValue" placeholder="输入数值" step="0.1">
-                <button class="btn accent" id="growthAddBtn">记录</button>
+            <div class="sub">屏幕变绿后立刻点击，测出反应速度</div>
+            <div class="game-area idle" id="gameArea">
+                <span class="game-text" id="gameText">点击下方按钮开始</span>
+                <div class="game-result" id="gameResult" style="display:none;"></div>
             </div>
-            <div class="growth-summary" id="growthSummary"></div>
-            <table class="history-table" id="historyTable">
-                <thead><tr><th>日期</th><th>数值</th><th>变化</th><th>操作</th></tr></thead>
-                <tbody id="historyBody"></tbody>
-            </table>
-            <div class="row" style="justify-content:flex-end;">
-                <button class="btn tiny" id="growthEditBtn">编辑</button>
-                <button class="btn tiny" id="clearGrowthBtn">清空</button>
+            <div class="game-actions">
+                <button class="btn accent" id="gameStartBtn">开始测试</button>
+            </div>
+            <div class="game-stats">
+                <div class="game-stat"><div class="num" id="gameBest">-</div><div class="lbl">历史最佳</div></div>
+                <div class="game-stat"><div class="num" id="gameTodayCount">0</div><div class="lbl">今日次数</div></div>
+                <div class="game-stat"><div class="num" id="gameTodayAvg">-</div><div class="lbl">今日平均</div></div>
+            </div>
+            <div class="game-history" id="gameHistory"></div>
+        </div>
+
+        <!-- 游戏2：手速挑战 -->
+        <div class="card" style="margin-top:14px;">
+            <div class="game-card-title">
+                <h2>手速挑战</h2>
+                <span class="badge">👆 点击速度</span>
+            </div>
+            <div class="sub">10秒内点击移动目标，尽可能多得分</div>
+            <div class="difficulty-selector">
+                <span style="font-size:0.65em; color:var(--text-light);">难度：</span>
+                <button class="diff-btn active" data-diff="easy">简单</button>
+                <button class="diff-btn" data-diff="medium">中等</button>
+                <button class="diff-btn" data-diff="hard">困难</button>
+            </div>
+            <div class="click-area" id="clickArea">
+                <span id="clickIdleText" style="font-size:1em; color:var(--text-light);">点击下方按钮开始</span>
+                <span id="clickScore" style="display:none;" class="click-count">0</span>
+                <span id="clickTimeLeft" style="display:none;" class="click-timer">10.0s</span>
+                <div id="clickTarget" class="click-target" style="display:none;">点</div>
+            </div>
+            <div class="game-actions">
+                <button class="btn accent" id="clickStartBtn">开始挑战</button>
+            </div>
+            <div class="game-stats">
+                <div class="game-stat"><div class="num" id="clickBest">-</div><div class="lbl">历史最高</div></div>
+                <div class="game-stat"><div class="num" id="clickLast">-</div><div class="lbl">上次得分</div></div>
             </div>
         </div>
+
+        <!-- 游戏3：节奏点击 -->
+        <div class="card" style="margin-top:14px;">
+            <div class="game-card-title">
+                <h2>节奏点击</h2>
+                <span class="badge">🎵 精准度</span>
+            </div>
+            <div class="sub">屏幕闪绿时立刻点击，5秒窗口内测试精准反应</div>
+            <div class="rhythm-area" id="rhythmArea">
+                <span class="rhythm-text" id="rhythmText">点击下方按钮开始</span>
+                <div class="rhythm-score" id="rhythmScore" style="display:none;">0</div>
+                <div class="rhythm-result" id="rhythmResult"></div>
+            </div>
+            <div class="game-actions">
+                <button class="btn accent" id="rhythmStartBtn">开始挑战</button>
+            </div>
+            <div class="game-stats">
+                <div class="game-stat"><div class="num" id="rhythmBest">-</div><div class="lbl">最佳精准</div></div>
+                <div class="game-stat"><div class="num" id="rhythmAvg">-</div><div class="lbl">平均偏差</div></div>
+            </div>
+        </div>
+
     </div>
 
     <!-- 留言 -->
     <div class="page" id="page-guestbook">
-        <div class="card">
-            <h2>访客留言</h2>
-            <div class="sub">路过的人，留句话吧</div>
-            <div id="guestbookMessages"></div>
-            <div class="guestbook-input-row">
-                <input type="text" id="guestbookInput" placeholder="写一句话...">
-                <button class="btn accent small" id="guestbookSendBtn">发送</button>
-            </div>
-            <p style="font-size:0.65em; color:var(--text-light); margin-top:6px;">留言保存在你的浏览器里</p>
-        </div>
+        <div class="card"><h2>访客留言</h2><div class="sub">路过的人，留句话吧</div><div id="guestbookMessages"></div><div class="guestbook-input-row"><input type="text" id="guestbookInput" placeholder="写一句话..."><button class="btn accent small" id="guestbookSendBtn">发送</button></div><p style="font-size:0.65em; color:var(--text-light); margin-top:6px;">留言保存在你的浏览器里</p></div>
     </div>
 
 </div>
 
 <script>
 (function() {
-    // ==================== 夜间模式自动切换 ====================
-    function autoDarkMode() {
-        var hour = new Date().getHours();
-        var isDark = (hour >= 19 || hour < 6);
-        if (isDark) document.documentElement.classList.add('dark');
-        else document.documentElement.classList.remove('dark');
-    }
-    autoDarkMode();
-    setInterval(autoDarkMode, 60000);
+    function autoDarkMode() { var h=new Date().getHours(); if(h>=19||h<6)document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark'); }
+    autoDarkMode(); setInterval(autoDarkMode,60000);
 
     // ==================== 导航 ====================
-    var navBtns = document.querySelectorAll('.nav-btn');
-    var pages = document.querySelectorAll('.page');
-    navBtns.forEach(function(btn) {
-        btn.onclick = function() {
-            var target = this.getAttribute('data-page');
-            navBtns.forEach(function(b) { b.classList.remove('active'); });
-            this.classList.add('active');
-            pages.forEach(function(p) { p.classList.remove('active'); });
-            var pageEl = document.getElementById('page-' + target);
-            if (pageEl) pageEl.classList.add('active');
-            if (target === 'timer') updateTimerDisplay();
-            if (target === 'growth') renderGrowthPage();
-            if (target === 'home') { renderGrid(); renderTodayPlan(); renderHeatmap(); }
-            if (target === 'plan') initCyclePage();
-        };
-    });
+    var navBtns=document.querySelectorAll('.nav-btn'), pages=document.querySelectorAll('.page');
+    navBtns.forEach(function(b){b.onclick=function(){var t=this.getAttribute('data-page');navBtns.forEach(function(x){x.classList.remove('active');});this.classList.add('active');pages.forEach(function(p){p.classList.remove('active');});var el=document.getElementById('page-'+t);if(el)el.classList.add('active');if(t==='timer')updateTimerDisplay();if(t==='growth')renderGrowthPage();if(t==='home'){renderGrid();renderTodayPlan();renderHeatmap();}if(t==='plan')initCyclePage();};});
 
     // ==================== 主页 ====================
-    var DAYS = ['周一','周二','周三','周四','周五','周六','周日'];
-    var weekData = JSON.parse(localStorage.getItem('weekCheckData') || '[false,false,false,false,false,false,false]');
-    var todayStr = new Date().toISOString().split('T')[0];
-
-    function getWeekDates() {
-        var today = new Date();
-        var diff = today.getDay() === 0 ? 6 : today.getDay() - 1;
-        var monday = new Date(today); monday.setDate(today.getDate() - diff);
-        var dates = [];
-        for (var i = 0; i < 7; i++) { var d = new Date(monday); d.setDate(monday.getDate() + i); dates.push(d); }
-        return dates;
-    }
-    function getTodayIndex() {
-        var today = new Date(); today.setHours(0,0,0,0);
-        var dates = getWeekDates();
-        for (var i = 0; i < 7; i++) { var d = new Date(dates[i]); d.setHours(0,0,0,0); if (d.getTime() === today.getTime()) return i; }
-        return -1;
-    }
-    function updateWeekStatus() {
-        var dates = getWeekDates(), today = new Date(); today.setHours(0,0,0,0);
-        for (var i = 0; i < 7; i++) {
-            var dayDate = new Date(dates[i]); dayDate.setHours(0,0,0,0);
-            if (dayDate < today) { if (weekData[i] !== true) weekData[i] = 'missed'; }
-            else { if (weekData[i] === 'missed') weekData[i] = false; }
-        }
-        localStorage.setItem('weekCheckData', JSON.stringify(weekData));
-    }
-    function countCheckDays() { var c = 0; for (var i = 0; i < weekData.length; i++) if (weekData[i] === true) c++; return c; }
-
-    function renderGrid() {
-        updateWeekStatus();
-        var grid = document.getElementById('grid'); if (!grid) return;
-        var dates = getWeekDates(), todayIndex = getTodayIndex();
-        grid.innerHTML = '';
-        for (var i = 0; i < DAYS.length; i++) {
-            (function(index) {
-                var status = weekData[index], d = dates[index];
-                var cell = document.createElement('div'); cell.className = 'cell';
-                if (status === true) cell.classList.add('checked');
-                else if (status === 'missed') cell.classList.add('missed');
-                if (index === todayIndex) cell.classList.add('today');
-                var iconText = status === true ? '✓' : (status === 'missed' ? '✗' : '○');
-                var labelText = status === true ? '完成' : (status === 'missed' ? '错过' : '打卡');
-                cell.innerHTML = '<div class="day-name">' + DAYS[index] + '</div><div class="day-date">' + (d.getMonth()+1) + '/' + d.getDate() + '</div><div class="day-icon">' + iconText + '</div><div class="day-label">' + labelText + '</div>';
-                if (status === false) {
-                    cell.onclick = function() {
-                        weekData[index] = true;
-                        localStorage.setItem('weekCheckData', JSON.stringify(weekData));
-                        var dateStr = d.toISOString().split('T')[0];
-                        var yearData = JSON.parse(localStorage.getItem('yearCheckData') || '{}');
-                        yearData[dateStr] = true;
-                        localStorage.setItem('yearCheckData', JSON.stringify(yearData));
-                        renderGrid(); renderHeatmap();
-                        showLogModal(dateStr);
-                    };
-                }
-                grid.appendChild(cell);
-            })(i);
-        }
-        document.getElementById('weekStatsInline').textContent = '本周 ' + countCheckDays() + '/7';
-    }
-
-    function updateInfo() {
-        var now = new Date();
-        var wd = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-        document.getElementById('nowDate').textContent = now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日 ' + wd[now.getDay()];
-        var startStr = localStorage.getItem('startDate') || '2026-04-20';
-        var start = new Date(startStr + 'T00:00:00');
-        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        var days = Math.floor((today - start) / 86400000) + 1;
-        document.getElementById('counter').textContent = '坚持 ' + days + ' 天';
-    }
-
-    function getCurrentCycleDay() {
-        var s = localStorage.getItem('cycleStartDate') || localStorage.getItem('startDate') || '2026-04-20';
-        var start = new Date(s + 'T00:00:00');
-        var today = new Date(); today.setHours(0,0,0,0);
-        var diffDays = Math.floor((today - start) / 86400000);
-        var cycleDays = parseInt(localStorage.getItem('cycleDays') || '4');
-        var dayInCycle = (diffDays % cycleDays);
-        if (dayInCycle < 0) dayInCycle += cycleDays;
-        return { dayIndex: dayInCycle, cycleDays: cycleDays };
-    }
-
-    function renderTodayPlan() {
-        var cycleData = JSON.parse(localStorage.getItem('cyclePlanData') || '[]');
-        var info = getCurrentCycleDay(), dayIndex = info.dayIndex;
-        var el = document.getElementById('todayPlanContent'); if (!el) return;
-        if (cycleData.length === 0 || dayIndex >= cycleData.length) { el.textContent = '暂无训练计划'; return; }
-        var td = cycleData[dayIndex];
-        if (td.isRest) el.textContent = '今日休息';
-        else { var parts = []; if (td.部位) parts.push(td.部位); if (td.动作) parts.push(td.动作); el.textContent = parts.join(' · ') || '暂无安排'; }
-    }
-
-    document.getElementById('startBtn').onclick = function() {
-        var p = document.getElementById('picker');
-        p.style.display = (p.style.display === 'none' || p.style.display === '') ? 'flex' : 'none';
-        if (p.style.display === 'flex') document.getElementById('dateInput').value = localStorage.getItem('startDate') || '2026-04-20';
-    };
-    document.getElementById('saveBtn').onclick = function() {
-        var v = document.getElementById('dateInput').value;
-        if (v) { localStorage.setItem('startDate', v); updateInfo(); document.getElementById('picker').style.display = 'none'; }
-    };
-    document.getElementById('resetBtn').onclick = function() {
-        if (confirm('重置本周打卡？')) { weekData = [false,false,false,false,false,false,false]; localStorage.setItem('weekCheckData', JSON.stringify(weekData)); renderGrid(); }
-    };
+    var DAYS=['周一','周二','周三','周四','周五','周六','周日'], weekData=JSON.parse(localStorage.getItem('weekCheckData')||'[false,false,false,false,false,false,false]'), todayStr=new Date().toISOString().split('T')[0];
+    function getWeekDates(){var t=new Date(),d=t.getDay()===0?6:t.getDay()-1,m=new Date(t);m.setDate(t.getDate()-d);var a=[];for(var i=0;i<7;i++){var dd=new Date(m);dd.setDate(m.getDate()+i);a.push(dd);}return a;}
+    function getTodayIndex(){var t=new Date();t.setHours(0,0,0,0);var d=getWeekDates();for(var i=0;i<7;i++){var dd=new Date(d[i]);dd.setHours(0,0,0,0);if(dd.getTime()===t.getTime())return i;}return -1;}
+    function updateWeekStatus(){var d=getWeekDates(),t=new Date();t.setHours(0,0,0,0);for(var i=0;i<7;i++){var dd=new Date(d[i]);dd.setHours(0,0,0,0);if(dd<t){if(weekData[i]!==true)weekData[i]='missed';}else{if(weekData[i]==='missed')weekData[i]=false;}}localStorage.setItem('weekCheckData',JSON.stringify(weekData));}
+    function countCheckDays(){var c=0;for(var i=0;i<weekData.length;i++)if(weekData[i]===true)c++;return c;}
+    function renderGrid(){updateWeekStatus();var g=document.getElementById('grid');if(!g)return;var d=getWeekDates(),ti=getTodayIndex();g.innerHTML='';for(var i=0;i<DAYS.length;i++){(function(idx){var s=weekData[idx],dd=d[idx];var c=document.createElement('div');c.className='cell';if(s===true)c.classList.add('checked');else if(s==='missed')c.classList.add('missed');if(idx===ti)c.classList.add('today');var ic=s===true?'✓':(s==='missed'?'✗':'○'),lb=s===true?'完成':(s==='missed'?'错过':'打卡');c.innerHTML='<div class="day-name">'+DAYS[idx]+'</div><div class="day-date">'+(dd.getMonth()+1)+'/'+dd.getDate()+'</div><div class="day-icon">'+ic+'</div><div class="day-label">'+lb+'</div>';if(s===false){c.onclick=function(){weekData[idx]=true;localStorage.setItem('weekCheckData',JSON.stringify(weekData));var ds=dd.toISOString().split('T')[0];var yd=JSON.parse(localStorage.getItem('yearCheckData')||'{}');yd[ds]=true;localStorage.setItem('yearCheckData',JSON.stringify(yd));renderGrid();renderHeatmap();showLogModal(ds);};}g.appendChild(c);})(i);}document.getElementById('weekStatsInline').textContent='本周 '+countCheckDays()+'/7';}
+    function updateInfo(){var n=new Date(),wd=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];document.getElementById('nowDate').textContent=n.getFullYear()+'年'+(n.getMonth()+1)+'月'+n.getDate()+'日 '+wd[n.getDay()];var s=localStorage.getItem('startDate')||'2026-04-20',st=new Date(s+'T00:00:00'),td=new Date(n.getFullYear(),n.getMonth(),n.getDate()),days=Math.floor((td-st)/86400000)+1;document.getElementById('counter').textContent='坚持 '+days+' 天';}
+    function getCurrentCycleDay(){var s=localStorage.getItem('cycleStartDate')||localStorage.getItem('startDate')||'2026-04-20',st=new Date(s+'T00:00:00'),td=new Date();td.setHours(0,0,0,0);var dd=Math.floor((td-st)/86400000),cd=parseInt(localStorage.getItem('cycleDays')||'4'),dic=(dd%cd);if(dic<0)dic+=cd;return{dayIndex:dic,cycleDays:cd};}
+    function renderTodayPlan(){var cd=JSON.parse(localStorage.getItem('cyclePlanData')||'[]'),info=getCurrentCycleDay(),di=info.dayIndex,el=document.getElementById('todayPlanContent');if(!el)return;if(cd.length===0||di>=cd.length){el.textContent='暂无训练计划';return;}var t=cd[di];if(t.isRest)el.textContent='今日休息';else{var p=[];if(t.部位)p.push(t.部位);if(t.动作)p.push(t.动作);el.textContent=p.join(' · ')||'暂无安排';}}
+    document.getElementById('startBtn').onclick=function(){var p=document.getElementById('picker');p.style.display=(p.style.display==='none'||p.style.display==='')?'flex':'none';if(p.style.display==='flex')document.getElementById('dateInput').value=localStorage.getItem('startDate')||'2026-04-20';};
+    document.getElementById('saveBtn').onclick=function(){var v=document.getElementById('dateInput').value;if(v){localStorage.setItem('startDate',v);updateInfo();document.getElementById('picker').style.display='none';}};
+    document.getElementById('resetBtn').onclick=function(){if(confirm('重置本周打卡？')){weekData=[false,false,false,false,false,false,false];localStorage.setItem('weekCheckData',JSON.stringify(weekData));renderGrid();}};
 
     // ==================== 微习惯 ====================
-    var habits = JSON.parse(localStorage.getItem('habitData') || '["喝水 2L","不点外卖","12点前睡觉"]');
-    var habitChecks = JSON.parse(localStorage.getItem('habitChecks') || '{}');
-    if (habitChecks.date !== todayStr) { habitChecks = { date: todayStr }; localStorage.setItem('habitChecks', JSON.stringify(habitChecks)); }
-
-    function renderHabits() {
-        var list = document.getElementById('habitsList'); if (!list) return; list.innerHTML = '';
-        for (var i = 0; i < habits.length; i++) {
-            (function(idx) {
-                var item = document.createElement('div'); item.className = 'habit-item';
-                var check = document.createElement('span'); check.className = 'habit-check' + (habitChecks[habits[idx]] ? ' done' : '');
-                check.textContent = habitChecks[habits[idx]] ? '✓' : '';
-                check.onclick = function() { habitChecks[habits[idx]] = !habitChecks[habits[idx]]; localStorage.setItem('habitChecks', JSON.stringify(habitChecks)); renderHabits(); };
-                var name = document.createElement('span'); name.className = 'habit-name'; name.textContent = habits[idx];
-                var del = document.createElement('span'); del.className = 'habit-del'; del.textContent = '×';
-                del.onclick = function() { if (confirm('删除「'+habits[idx]+'」？')) { habits.splice(idx,1); localStorage.setItem('habitData', JSON.stringify(habits)); renderHabits(); } };
-                item.appendChild(check); item.appendChild(name); item.appendChild(del); list.appendChild(item);
-            })(i);
-        }
-    }
-    document.getElementById('saveHabitBtn').onclick = function() {
-        var v = document.getElementById('newHabitInput').value.trim();
-        if (v) { habits.push(v); localStorage.setItem('habitData', JSON.stringify(habits)); document.getElementById('newHabitInput').value = ''; renderHabits(); }
-    };
-    document.getElementById('newHabitInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') document.getElementById('saveHabitBtn').click(); });
+    var habits=JSON.parse(localStorage.getItem('habitData')||'["喝水 2L","不点外卖","12点前睡觉"]'),habitChecks=JSON.parse(localStorage.getItem('habitChecks')||'{}');
+    if(habitChecks.date!==todayStr){habitChecks={date:todayStr};localStorage.setItem('habitChecks',JSON.stringify(habitChecks));}
+    function renderHabits(){var l=document.getElementById('habitsList');if(!l)return;l.innerHTML='';for(var i=0;i<habits.length;i++){(function(idx){var it=document.createElement('div');it.className='habit-item';var ck=document.createElement('span');ck.className='habit-check'+(habitChecks[habits[idx]]?' done':'');ck.textContent=habitChecks[habits[idx]]?'✓':'';ck.onclick=function(){habitChecks[habits[idx]]=!habitChecks[habits[idx]];localStorage.setItem('habitChecks',JSON.stringify(habitChecks));renderHabits();};var nm=document.createElement('span');nm.className='habit-name';nm.textContent=habits[idx];var dl=document.createElement('span');dl.className='habit-del';dl.textContent='×';dl.onclick=function(){if(confirm('删除「'+habits[idx]+'」？')){habits.splice(idx,1);localStorage.setItem('habitData',JSON.stringify(habits));renderHabits();}};it.appendChild(ck);it.appendChild(nm);it.appendChild(dl);l.appendChild(it);})(i);}}
+    document.getElementById('saveHabitBtn').onclick=function(){var v=document.getElementById('newHabitInput').value.trim();if(v){habits.push(v);localStorage.setItem('habitData',JSON.stringify(habits));document.getElementById('newHabitInput').value='';renderHabits();}};
     renderHabits();
 
-    // ==================== 训练日志 + 搜索 ====================
-    var logData = JSON.parse(localStorage.getItem('trainingLog') || '[]');
-    function renderLogList(filter) {
-        var list = document.getElementById('logList'); if (!list) return;
-        var sorted = logData.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
-        if (filter) { sorted = sorted.filter(function(item){return item.note && item.note.indexOf(filter) !== -1;}); }
-        if (sorted.length === 0) { list.innerHTML = '<div class="log-empty">' + (filter ? '没有匹配的记录' : '暂无记录') + '</div>'; return; }
-        list.innerHTML = '';
-        for (var i = 0; i < Math.min(sorted.length, 20); i++) {
-            var div = document.createElement('div'); div.className = 'log-item';
-            div.innerHTML = '<span class="log-date">' + sorted[i].date + '</span><span class="log-note">' + (sorted[i].note || '（无备注）') + '</span>';
-            list.appendChild(div);
-        }
-    }
-    document.getElementById('logSearchInput').addEventListener('input', function() { renderLogList(this.value.trim()); });
-    function showLogModal(dateStr) {
-        var existing = ''; for (var i = 0; i < logData.length; i++) { if (logData[i].date === dateStr) { existing = logData[i].note || ''; break; } }
-        var overlay = document.createElement('div'); overlay.className = 'modal-overlay';
-        var box = document.createElement('div'); box.className = 'modal-box';
-        box.innerHTML = '<p style="font-weight:500;">记录今天的状态</p><p style="font-size:0.7em;color:var(--text-light);">'+dateStr+'</p><textarea id="logNoteInput" placeholder="今天练了什么？感觉如何？">'+existing+'</textarea><div><button class="btn accent" id="logSaveBtn">保存</button> <button class="btn" id="logSkipBtn">跳过</button></div>';
-        overlay.appendChild(box); document.body.appendChild(overlay);
-        document.getElementById('logNoteInput').focus();
-        document.getElementById('logSaveBtn').onclick = function() {
-            var note = document.getElementById('logNoteInput').value.trim();
-            if (note) { var found = false; for (var i=0;i<logData.length;i++){if(logData[i].date===dateStr){logData[i].note=note;found=true;break;}} if(!found) logData.push({date:dateStr,note:note}); localStorage.setItem('trainingLog', JSON.stringify(logData)); renderLogList(document.getElementById('logSearchInput').value.trim()); }
-            document.body.removeChild(overlay);
-        };
-        document.getElementById('logSkipBtn').onclick = function() { document.body.removeChild(overlay); };
-    }
+    // ==================== 日志 ====================
+    var logData=JSON.parse(localStorage.getItem('trainingLog')||'[]');
+    function renderLogList(f){var l=document.getElementById('logList');if(!l)return;var s=logData.slice().sort(function(a,b){return b.date.localeCompare(a.date);});if(f)s=s.filter(function(i){return i.note&&i.note.indexOf(f)!==-1;});l.innerHTML=s.length===0?'<div class="log-empty">'+(f?'无匹配记录':'暂无记录')+'</div>':'';for(var i=0;i<Math.min(s.length,20);i++){var d=document.createElement('div');d.className='log-item';d.innerHTML='<span class="log-date">'+s[i].date+'</span><span class="log-note">'+(s[i].note||'（无备注）')+'</span>';l.appendChild(d);}}
+    document.getElementById('logSearchInput').addEventListener('input',function(){renderLogList(this.value.trim());});
+    function showLogModal(ds){var ex='';for(var i=0;i<logData.length;i++){if(logData[i].date===ds){ex=logData[i].note||'';break;}}var ov=document.createElement('div');ov.className='modal-overlay';var bx=document.createElement('div');bx.className='modal-box';bx.innerHTML='<p style="font-weight:500;">记录今天的状态</p><p style="font-size:0.7em;color:var(--text-light);">'+ds+'</p><textarea id="logNoteInput" placeholder="今天练了什么？感觉如何？">'+ex+'</textarea><div><button class="btn accent" id="logSaveBtn">保存</button> <button class="btn" id="logSkipBtn">跳过</button></div>';ov.appendChild(bx);document.body.appendChild(ov);document.getElementById('logNoteInput').focus();document.getElementById('logSaveBtn').onclick=function(){var n=document.getElementById('logNoteInput').value.trim();if(n){var f=false;for(var i=0;i<logData.length;i++){if(logData[i].date===ds){logData[i].note=n;f=true;break;}}if(!f)logData.push({date:ds,note:n});localStorage.setItem('trainingLog',JSON.stringify(logData));renderLogList(document.getElementById('logSearchInput').value.trim());}document.body.removeChild(ov);};document.getElementById('logSkipBtn').onclick=function(){document.body.removeChild(ov);};}
     renderLogList();
 
     // ==================== 热力图 ====================
-    function renderHeatmap() {
-        var grid = document.getElementById('heatmapGrid'); if (!grid) return;
-        var year = new Date().getFullYear();
-        document.getElementById('heatmapYearLabel').textContent = year + '年';
-        var yearData = JSON.parse(localStorage.getItem('yearCheckData') || '{}');
-        var totalDays = (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 366 : 365;
-        grid.style.gridTemplateColumns = 'repeat(26, 1fr)';
-        grid.innerHTML = '';
-        for (var d = 0; d < totalDays; d++) {
-            var date = new Date(year, 0, 1); date.setDate(date.getDate() + d);
-            var dateStr = date.toISOString().split('T')[0];
-            var checked = yearData[dateStr] === true;
-            var cell = document.createElement('div'); cell.className = 'heatmap-cell';
-            cell.style.backgroundColor = checked ? '#888' : '#ebedf0';
-            cell.title = dateStr + (checked ? ' ✓' : '');
-            grid.appendChild(cell);
-        }
-    }
-
-    updateInfo(); renderGrid(); renderTodayPlan(); renderHeatmap();
+    function renderHeatmap(){var g=document.getElementById('heatmapGrid');if(!g)return;var y=new Date().getFullYear();document.getElementById('heatmapYearLabel').textContent=y+'年';var yd=JSON.parse(localStorage.getItem('yearCheckData')||'{}'),td=(y%4===0&&(y%100!==0||y%400===0))?366:365;g.style.gridTemplateColumns='repeat(26, 1fr)';g.innerHTML='';for(var d=0;d<td;d++){var dt=new Date(y,0,1);dt.setDate(dt.getDate()+d);var ds=dt.toISOString().split('T')[0],c=document.createElement('div');c.className='heatmap-cell';c.style.backgroundColor=yd[ds]?'#888':'#ebedf0';c.title=ds+(yd[ds]?' ✓':'');g.appendChild(c);}}
+    updateInfo();renderGrid();renderTodayPlan();renderHeatmap();
 
     // ==================== 计划 ====================
-    var cyclePlanData = JSON.parse(localStorage.getItem('cyclePlanData') || '[]');
-    var cycleDays = parseInt(localStorage.getItem('cycleDays') || '4');
-    var cycleStartDate = localStorage.getItem('cycleStartDate') || localStorage.getItem('startDate') || '2026-04-20';
-    function initCyclePage() { document.getElementById('cycleDaysInput').value = cycleDays; renderCycleTable(); }
-    function renderCycleTable() {
-        var tbody = document.getElementById('cycleBody'); if (!tbody) return;
-        while (cyclePlanData.length < cycleDays) cyclePlanData.push({ isRest:false, 部位:'', 动作:'' });
-        while (cyclePlanData.length > cycleDays) cyclePlanData.pop();
-        var info = getCurrentCycleDay(), todayIndex = info.dayIndex;
-        tbody.innerHTML = '';
-        for (var i = 0; i < cycleDays; i++) {
-            (function(idx) {
-                var d = cyclePlanData[idx];
-                var tr = document.createElement('tr'); if (idx === todayIndex) tr.className = 'today-row';
-                tr.innerHTML = '<td>第'+(idx+1)+'天'+(idx===todayIndex?' ⬅':'')+'</td><td><span class="rest-tag'+(d.isRest?' active':'')+'">'+(d.isRest?'休息':'训练')+'</span></td><td><input value="'+(d.部位||'')+'" '+(d.isRest?'disabled':'')+'></td><td><input value="'+(d.动作||'')+'" '+(d.isRest?'disabled':'')+'></td>';
-                tr.querySelector('.rest-tag').onclick = function() { cyclePlanData[idx].isRest = !cyclePlanData[idx].isRest; renderCycleTable(); };
-                var inputs = tr.querySelectorAll('input');
-                inputs[0].oninput = function() { cyclePlanData[idx].部位 = this.value; };
-                inputs[1].oninput = function() { cyclePlanData[idx].动作 = this.value; };
-                tbody.appendChild(tr);
-            })(i);
-        }
-        document.getElementById('cycleInfo').textContent = '今日：第' + (todayIndex+1) + '天 / 共' + cycleDays + '天';
-    }
-    document.getElementById('applyCycleBtn').onclick = function() {
-        var nd = parseInt(document.getElementById('cycleDaysInput').value);
-        if (isNaN(nd) || nd < 1 || nd > 14) return;
-        cycleDays = nd; localStorage.setItem('cycleDays', cycleDays);
-        while (cyclePlanData.length < cycleDays) cyclePlanData.push({ isRest:false, 部位:'', 动作:'' });
-        while (cyclePlanData.length > cycleDays) cyclePlanData.pop();
-        renderCycleTable();
-    };
-    document.getElementById('saveCycleBtn').onclick = function() { localStorage.setItem('cyclePlanData', JSON.stringify(cyclePlanData)); localStorage.setItem('cycleDays', cycleDays); alert('已保存'); };
-    document.getElementById('resetCycleBtn').onclick = function() {
-        var ts = new Date().toISOString().split('T')[0];
-        if (confirm('重置起始日为今天？')) { cycleStartDate = ts; localStorage.setItem('cycleStartDate', cycleStartDate); renderCycleTable(); }
-    };
+    var cyclePlanData=JSON.parse(localStorage.getItem('cyclePlanData')||'[]'),cycleDays=parseInt(localStorage.getItem('cycleDays')||'4'),cycleStartDate=localStorage.getItem('cycleStartDate')||localStorage.getItem('startDate')||'2026-04-20';
+    function initCyclePage(){document.getElementById('cycleDaysInput').value=cycleDays;renderCycleTable();}
+    function renderCycleTable(){var tb=document.getElementById('cycleBody');if(!tb)return;while(cyclePlanData.length<cycleDays)cyclePlanData.push({isRest:false,部位:'',动作:''});while(cyclePlanData.length>cycleDays)cyclePlanData.pop();var info=getCurrentCycleDay(),ti=info.dayIndex;tb.innerHTML='';for(var i=0;i<cycleDays;i++){(function(idx){var d=cyclePlanData[idx],tr=document.createElement('tr');if(idx===ti)tr.className='today-row';tr.innerHTML='<td>第'+(idx+1)+'天'+(idx===ti?' ⬅':'')+'</td><td><span class="rest-tag'+(d.isRest?' active':'')+'">'+(d.isRest?'休息':'训练')+'</span></td><td><input value="'+(d.部位||'')+'" '+(d.isRest?'disabled':'')+'></td><td><input value="'+(d.动作||'')+'" '+(d.isRest?'disabled':'')+'></td>';tr.querySelector('.rest-tag').onclick=function(){cyclePlanData[idx].isRest=!cyclePlanData[idx].isRest;renderCycleTable();};var ins=tr.querySelectorAll('input');ins[0].oninput=function(){cyclePlanData[idx].部位=this.value;};ins[1].oninput=function(){cyclePlanData[idx].动作=this.value;};tb.appendChild(tr);})(i);}document.getElementById('cycleInfo').textContent='今日：第'+(ti+1)+'天 / 共'+cycleDays+'天';}
+    document.getElementById('applyCycleBtn').onclick=function(){var nd=parseInt(document.getElementById('cycleDaysInput').value);if(isNaN(nd)||nd<1||nd>14)return;cycleDays=nd;localStorage.setItem('cycleDays',cycleDays);while(cyclePlanData.length<cycleDays)cyclePlanData.push({isRest:false,部位:'',动作:''});while(cyclePlanData.length>cycleDays)cyclePlanData.pop();renderCycleTable();};
+    document.getElementById('saveCycleBtn').onclick=function(){localStorage.setItem('cyclePlanData',JSON.stringify(cyclePlanData));localStorage.setItem('cycleDays',cycleDays);alert('已保存');};
+    document.getElementById('resetCycleBtn').onclick=function(){var ts=new Date().toISOString().split('T')[0];if(confirm('重置起始日为今天？')){cycleStartDate=ts;localStorage.setItem('cycleStartDate',cycleStartDate);renderCycleTable();}};
 
-    // ==================== 计时器 + 音效自定义 ====================
-    var timerSeconds = 0, timerInterval = null, timerRunning = false, timerMode = 'countdown', stopwatchLaps = [];
-    var soundMode = localStorage.getItem('soundMode') || 'beep';
-    document.querySelectorAll('.sound-opt').forEach(function(b) { if (b.getAttribute('data-sound') === soundMode) b.classList.add('active'); });
-    document.querySelectorAll('.sound-opt').forEach(function(b) {
-        b.onclick = function() {
-            document.querySelectorAll('.sound-opt').forEach(function(x) { x.classList.remove('active'); });
-            this.classList.add('active');
-            soundMode = this.getAttribute('data-sound');
-            localStorage.setItem('soundMode', soundMode);
-        };
-    });
-
-    function updateTimerDisplay() {
-        var d = document.getElementById('timerDisplay'); if (!d) return;
-        var m = Math.floor(Math.abs(timerSeconds) / 60), s = Math.abs(timerSeconds) % 60;
-        d.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
-    }
-    function stopTimer() { if (timerInterval) { clearInterval(timerInterval); timerInterval = null; } timerRunning = false; }
-    function playSound() {
-        if (soundMode === 'none') return;
-        if (soundMode === 'buzz') { if (navigator.vibrate) navigator.vibrate([100,80,100,80,100]); return; }
-        try {
-            var AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (!AudioContext) return;
-            var ctx = new AudioContext(), now = ctx.currentTime;
-            for (var i = 0; i < 3; i++) {
-                var osc = ctx.createOscillator(), gain = ctx.createGain();
-                osc.type = 'sine'; osc.frequency.value = 1000;
-                var t = now + i * 0.1;
-                gain.gain.setValueAtTime(0.3, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
-                osc.connect(gain); gain.connect(ctx.destination); osc.start(t); osc.stop(t + 0.1);
-            }
-            setTimeout(function() { ctx.close(); }, 800);
-        } catch(e) {}
-    }
-
-    document.querySelectorAll('.timer-mode-btn').forEach(function(b) {
-        b.onclick = function() {
-            document.querySelectorAll('.timer-mode-btn').forEach(function(x) { x.classList.remove('active'); });
-            this.classList.add('active');
-            timerMode = this.getAttribute('data-mode'); stopTimer(); timerSeconds = 0; stopwatchLaps = [];
-            updateTimerDisplay(); renderLaps();
-            document.getElementById('timerPresets').style.display = timerMode === 'countdown' ? 'flex' : 'none';
-        };
-    });
-    document.getElementById('timerStartBtn').onclick = function() {
-        if (timerRunning) return;
-        if (timerMode === 'countdown' && timerSeconds <= 0) return;
-        timerRunning = true;
-        timerInterval = setInterval(function() {
-            if (timerMode === 'countdown') { if (timerSeconds > 0) timerSeconds--; if (timerSeconds <= 0) { stopTimer(); playSound(); } }
-            else timerSeconds++;
-            updateTimerDisplay();
-        }, 1000);
-    };
-    document.getElementById('timerPauseBtn').onclick = function() {
-        if (timerMode === 'stopwatch' && timerRunning) { stopwatchLaps.push(timerSeconds); renderLaps(); }
-        stopTimer(); updateTimerDisplay();
-    };
-    document.getElementById('timerResetBtn').onclick = function() { stopTimer(); timerSeconds = 0; stopwatchLaps = []; updateTimerDisplay(); renderLaps(); };
-    function renderLaps() {
-        var el = document.getElementById('stopwatchLaps'); if (!el) return;
-        if (stopwatchLaps.length === 0) { el.innerHTML = ''; return; }
-        var html = '计次：';
-        for (var i = 0; i < stopwatchLaps.length; i++) { var m = Math.floor(stopwatchLaps[i]/60), s = stopwatchLaps[i]%60; html += (i+1)+':'+(m<10?'0'+m:m)+':'+(s<10?'0'+s:s)+' '; }
-        el.innerHTML = html;
-    }
-    document.querySelectorAll('.preset-btn').forEach(function(b) { b.onclick = function() { stopTimer(); timerSeconds = parseInt(this.getAttribute('data-seconds')); updateTimerDisplay(); }; });
+    // ==================== 计时器（含自定义时间） ====================
+    var timerMs=0,timerInterval=null,timerRunning=false,timerMode='countdown',stopwatchLaps=[],soundMode=localStorage.getItem('soundMode')||'beep';
+    document.querySelectorAll('.sound-opt').forEach(function(b){if(b.getAttribute('data-sound')===soundMode)b.classList.add('active');});
+    document.querySelectorAll('.sound-opt').forEach(function(b){b.onclick=function(){document.querySelectorAll('.sound-opt').forEach(function(x){x.classList.remove('active');});this.classList.add('active');soundMode=this.getAttribute('data-sound');localStorage.setItem('soundMode',soundMode);};});
+    function getTotalMs(){return timerMs;}function setTotalMs(ms){timerMs=ms;}
+    function updateTimerDisplay(){var t=getTotalMs(),a=Math.abs(t),m=Math.floor(a/60000),s=Math.floor((a%60000)/1000),ms=Math.floor((a%1000)/10);document.getElementById('timerMain').textContent=(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);document.getElementById('timerMs').textContent='.'+(ms<10?'0'+ms:ms);}
+    function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}timerRunning=false;}
+    function playSound(){if(soundMode==='none')return;if(soundMode==='buzz'){if(navigator.vibrate)navigator.vibrate([100,80,100,80,100]);return;}try{var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;var ctx=new AC(),now=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=1000;var t=now+i*0.1;g.gain.setValueAtTime(0.3,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.1);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+0.1);}setTimeout(function(){ctx.close();},800);}catch(e){}}
+    document.querySelectorAll('.timer-mode-btn').forEach(function(b){b.onclick=function(){document.querySelectorAll('.timer-mode-btn').forEach(function(x){x.classList.remove('active');});this.classList.add('active');timerMode=this.getAttribute('data-mode');stopTimer();setTotalMs(0);stopwatchLaps=[];updateTimerDisplay();renderLaps();document.getElementById('timerPresets').style.display=timerMode==='countdown'?'flex':'none';};});
+    document.getElementById('applyCustomTime').onclick=function(){var m=parseInt(document.getElementById('customMinutes').value)||0,s=parseInt(document.getElementById('customSeconds').value)||0;if(m===0&&s===0)return;stopTimer();setTotalMs((m*60+s)*1000);updateTimerDisplay();};
+    document.getElementById('timerStartBtn').onclick=function(){if(timerRunning)return;if(timerMode==='countdown'&&getTotalMs()<=0)return;timerRunning=true;var step=10;timerInterval=setInterval(function(){if(timerMode==='countdown'){var ms=getTotalMs();if(ms>0){ms-=step;if(ms<0)ms=0;setTotalMs(ms);}updateTimerDisplay();if(getTotalMs()<=0){stopTimer();updateTimerDisplay();playSound();}}else{setTotalMs(getTotalMs()+step);updateTimerDisplay();}},step);};
+    document.getElementById('timerPauseBtn').onclick=function(){if(timerMode==='stopwatch'&&timerRunning){stopwatchLaps.push(Math.round(getTotalMs()/10));renderLaps();}stopTimer();updateTimerDisplay();};
+    document.getElementById('timerResetBtn').onclick=function(){stopTimer();setTotalMs(0);stopwatchLaps=[];updateTimerDisplay();renderLaps();};
+    function renderLaps(){var el=document.getElementById('stopwatchLaps');if(!el)return;if(stopwatchLaps.length===0){el.innerHTML='';return;}var html='计次：';for(var i=0;i<stopwatchLaps.length;i++){var t=stopwatchLaps[i]*10,m=Math.floor(t/60000),s=Math.floor((t%60000)/1000),ms=Math.floor((t%1000)/10);html+=(i+1)+':'+(m<10?'0'+m:m)+':'+(s<10?'0'+s:s)+'.'+(ms<10?'0'+ms:ms)+' ';}el.innerHTML=html;}
+    document.querySelectorAll('.preset-btn').forEach(function(b){b.onclick=function(){stopTimer();setTotalMs(parseInt(this.getAttribute('data-seconds'))*1000);updateTimerDisplay();};});
     updateTimerDisplay();
 
     // ==================== 成长 ====================
-    var currentMetric = 'weight', metricNames = { weight:'体重(kg)', chest:'胸围(cm)', arm:'臂围(cm)', waist:'腰围(cm)', bodyfat:'体脂(%)' };
-    function getGrowthData() { try { return JSON.parse(localStorage.getItem('growthData') || '{}'); } catch(e) { return {}; } }
-    function saveGrowthData(d) { localStorage.setItem('growthData', JSON.stringify(d)); }
-    document.querySelectorAll('.metric-tag').forEach(function(t) {
-        t.onclick = function() { document.querySelectorAll('.metric-tag').forEach(function(x){x.classList.remove('active');}); this.classList.add('active'); currentMetric = this.getAttribute('data-metric'); renderGrowthPage(); };
-    });
-    function renderGrowthPage() {
-        var data = getGrowthData(), records = (data[currentMetric] || []).slice().sort(function(a,b){return b.date.localeCompare(a.date);});
-        var summary = document.getElementById('growthSummary');
-        if (summary) {
-            if (records.length===0) summary.innerHTML = '<div class="growth-card"><div class="val">-</div><div class="lbl">最新</div></div><div class="growth-card"><div class="val">-</div><div class="lbl">变化</div></div><div class="growth-card"><div class="val">0</div><div class="lbl">总记录</div></div>';
-            else {
-                var latest = records[0].value, unit = currentMetric==='bodyfat'?'%':'', ch='-', cls='stable';
-                if (records.length>1) { var c=(latest-records[1].value).toFixed(1); ch=(c>0?'+':'')+c+unit; cls=c>0?'up':(c<0?'down':'stable'); }
-                summary.innerHTML = '<div class="growth-card"><div class="val">'+latest+unit+'</div><div class="lbl">最新</div></div><div class="growth-card"><div class="val '+cls+'">'+ch+'</div><div class="lbl">较上次</div></div><div class="growth-card"><div class="val">'+records.length+'</div><div class="lbl">总记录</div></div>';
-            }
-        }
-        var tbody = document.getElementById('historyBody'); if (!tbody) return; tbody.innerHTML = '';
-        if (records.length===0) { tbody.innerHTML='<tr><td colspan="4">暂无记录</td></tr>'; return; }
-        for (var i=0;i<records.length;i++) {
-            (function(idx){
-                var r=records[idx], tr=document.createElement('tr'), unit=currentMetric==='bodyfat'?'%':'', ch='-';
-                if (idx<records.length-1) { var c=(r.value-records[idx+1].value).toFixed(1); ch=c>0?'<span class="up">+'+c+unit+'</span>':(c<0?'<span class="down">'+c+unit+'</span>':'<span class="stable">0</span>'); }
-                tr.innerHTML = '<td>'+r.date+'</td><td>'+r.value+unit+'</td><td>'+ch+'</td><td><button class="btn tiny" style="color:#c44;">×</button></td>';
-                tr.querySelector('button').onclick = function() {
-                    var r2=(getGrowthData()[currentMetric]||[]).slice().sort(function(a,b){return b.date.localeCompare(a.date);});
-                    r2.splice(idx,1); var ad=getGrowthData(); ad[currentMetric]=r2; saveGrowthData(ad); renderGrowthPage();
-                };
-                tbody.appendChild(tr);
-            })(i);
-        }
-    }
-    document.getElementById('growthAddBtn').onclick = function() {
-        var v = parseFloat(document.getElementById('growthValue').value); if (isNaN(v) || v<=0) return;
-        var ds = new Date().toISOString().split('T')[0], d = getGrowthData();
-        if (!d[currentMetric]) d[currentMetric]=[];
-        var f=false; for (var i=0;i<d[currentMetric].length;i++) { if (d[currentMetric][i].date===ds) { d[currentMetric][i].value=v; f=true; break; } }
-        if (!f) d[currentMetric].push({date:ds,value:v});
-        saveGrowthData(d); document.getElementById('growthValue').value=''; renderGrowthPage();
-    };
-    document.getElementById('growthEditBtn').onclick = function() {
-        var d=getGrowthData(), r=d[currentMetric]||[]; if (r.length===0) return;
-        var ds=prompt('编辑日期（2026-04-20）：'); if (!ds) return;
-        for (var i=0;i<r.length;i++) { if (r[i].date===ds) { var nv=prompt('当前值：'+r[i].value, r[i].value); if (nv!==null&&!isNaN(parseFloat(nv))) { r[i].value=parseFloat(nv); d[currentMetric]=r; saveGrowthData(d); renderGrowthPage(); } return; } }
-        alert('该日期无记录');
-    };
-    document.getElementById('clearGrowthBtn').onclick = function() {
-        if (confirm('清空「'+metricNames[currentMetric]+'」全部记录？')) { var d=getGrowthData(); d[currentMetric]=[]; saveGrowthData(d); renderGrowthPage(); }
-    };
+    var currentMetric='weight',metricNames={weight:'体重(kg)',chest:'胸围(cm)',arm:'臂围(cm)',waist:'腰围(cm)',bodyfat:'体脂(%)'};
+    function getGrowthData(){try{return JSON.parse(localStorage.getItem('growthData')||'{}');}catch(e){return{};}}function saveGrowthData(d){localStorage.setItem('growthData',JSON.stringify(d));}
+    document.querySelectorAll('.metric-tag').forEach(function(t){t.onclick=function(){document.querySelectorAll('.metric-tag').forEach(function(x){x.classList.remove('active');});this.classList.add('active');currentMetric=this.getAttribute('data-metric');renderGrowthPage();};});
+    function renderGrowthPage(){var d=getGrowthData(),r=(d[currentMetric]||[]).slice().sort(function(a,b){return b.date.localeCompare(a.date);});var s=document.getElementById('growthSummary');if(s){if(r.length===0)s.innerHTML='<div class="growth-card"><div class="val">-</div><div class="lbl">最新</div></div><div class="growth-card"><div class="val">-</div><div class="lbl">变化</div></div><div class="growth-card"><div class="val">0</div><div class="lbl">总记录</div></div>';else{var u=currentMetric==='bodyfat'?'%':'',ch='-',cls='stable';if(r.length>1){var c=(r[0].value-r[1].value).toFixed(1);ch=(c>0?'+':'')+c+u;cls=c>0?'up':(c<0?'down':'stable');}s.innerHTML='<div class="growth-card"><div class="val">'+r[0].value+u+'</div><div class="lbl">最新</div></div><div class="growth-card"><div class="val '+cls+'">'+ch+'</div><div class="lbl">较上次</div></div><div class="growth-card"><div class="val">'+r.length+'</div><div class="lbl">总记录</div></div>';}}var tb=document.getElementById('historyBody');if(!tb)return;tb.innerHTML='';if(r.length===0){tb.innerHTML='<tr><td colspan="4">暂无记录</td></tr>';return;}for(var i=0;i<r.length;i++){(function(idx){var rr=r[idx],u=currentMetric==='bodyfat'?'%':'',ch='-';if(idx<r.length-1){var c=(rr.value-r[idx+1].value).toFixed(1);ch=c>0?'<span class="up">+'+c+u+'</span>':(c<0?'<span class="down">'+c+u+'</span>':'<span class="stable">0</span>');}var tr=document.createElement('tr');tr.innerHTML='<td>'+rr.date+'</td><td>'+rr.value+u+'</td><td>'+ch+'</td><td><button class="btn tiny" style="color:#c44;">×</button></td>';tr.querySelector('button').onclick=function(){var r2=(getGrowthData()[currentMetric]||[]).slice().sort(function(a,b){return b.date.localeCompare(a.date);});r2.splice(idx,1);var ad=getGrowthData();ad[currentMetric]=r2;saveGrowthData(ad);renderGrowthPage();};tb.appendChild(tr);})(i);}}
+    document.getElementById('growthAddBtn').onclick=function(){var v=parseFloat(document.getElementById('growthValue').value);if(isNaN(v)||v<=0)return;var ds=new Date().toISOString().split('T')[0],d=getGrowthData();if(!d[currentMetric])d[currentMetric]=[];var f=false;for(var i=0;i<d[currentMetric].length;i++){if(d[currentMetric][i].date===ds){d[currentMetric][i].value=v;f=true;break;}}if(!f)d[currentMetric].push({date:ds,value:v});saveGrowthData(d);document.getElementById('growthValue').value='';renderGrowthPage();};
+    document.getElementById('growthEditBtn').onclick=function(){var d=getGrowthData(),r=d[currentMetric]||[];if(r.length===0)return;var ds=prompt('编辑日期（2026-04-20）：');if(!ds)return;for(var i=0;i<r.length;i++){if(r[i].date===ds){var nv=prompt('当前值：'+r[i].value,r[i].value);if(nv!==null&&!isNaN(parseFloat(nv))){r[i].value=parseFloat(nv);d[currentMetric]=r;saveGrowthData(d);renderGrowthPage();}return;}}alert('该日期无记录');};
+    document.getElementById('clearGrowthBtn').onclick=function(){if(confirm('清空全部记录？')){var d=getGrowthData();d[currentMetric]=[];saveGrowthData(d);renderGrowthPage();}};
     renderGrowthPage();
 
-    // ==================== 访客留言 ====================
-    var guestbook = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
-    function renderGuestbook() {
-        var el = document.getElementById('guestbookMessages'); if (!el) return;
-        if (guestbook.length === 0) { el.innerHTML = '<p style="color:var(--text-light); font-size:0.78em; text-align:center; padding:12px;">还没有留言，写一句吧</p>'; return; }
-        el.innerHTML = '';
-        for (var i = guestbook.length - 1; i >= 0; i--) {
-            var div = document.createElement('div'); div.className = 'guestbook-msg';
-            div.innerHTML = '<span class="gb-time">' + guestbook[i].time + '</span><span>' + guestbook[i].msg + '</span>';
-            el.appendChild(div);
+    // ==================== 反应测试游戏 ====================
+    var gameState='idle',gameTimeout=null,gameStartTime=0,gameBest=parseInt(localStorage.getItem('reactionBest'))||0,gameRecords=JSON.parse(localStorage.getItem('reactionRecords')||'[]');
+    function resetGameUI(){document.getElementById('gameArea').className='game-area idle';document.getElementById('gameText').textContent='点击下方按钮开始';document.getElementById('gameResult').style.display='none';}
+    function startGame(){if(gameState==='waiting')return;if(gameTimeout)clearTimeout(gameTimeout);gameState='waiting';var a=document.getElementById('gameArea');a.className='game-area waiting';document.getElementById('gameText').textContent='等待变绿...';document.getElementById('gameResult').style.display='none';var delay=1500+Math.floor(Math.random()*2500);gameTimeout=setTimeout(function(){gameState='ready';a.className='game-area ready';document.getElementById('gameText').textContent='点击！';gameStartTime=performance.now();},delay);}
+    function handleGameClick(){if(gameState==='waiting'){if(gameTimeout)clearTimeout(gameTimeout);gameState='idle';var a=document.getElementById('gameArea');a.className='game-area idle';document.getElementById('gameText').textContent='抢跑了！再试一次';document.getElementById('gameResult').style.display='none';return;}if(gameState==='ready'){var rt=Math.round(performance.now()-gameStartTime);gameState='finished';var a=document.getElementById('gameArea');a.className='game-area idle';document.getElementById('gameText').textContent='你的反应时间';var r=document.getElementById('gameResult');r.style.display='block';r.innerHTML=rt+'<span class="game-result-unit"> ms</span>';saveReactionResult(rt);renderGameStats();}}
+    function saveReactionResult(ms){if(gameBest===0||ms<gameBest){gameBest=ms;localStorage.setItem('reactionBest',gameBest);}var td=new Date().toISOString().split('T')[0];gameRecords.push({date:td,time:ms});if(gameRecords.length>200)gameRecords=gameRecords.slice(gameRecords.length-200);localStorage.setItem('reactionRecords',JSON.stringify(gameRecords));}
+    function getTodayStats(){var td=new Date().toISOString().split('T')[0],tr=gameRecords.filter(function(r){return r.date===td;}),c=tr.length,avg=c>0?Math.round(tr.reduce(function(s,r){return s+r.time;},0)/c):0;return{count:c,avg:avg};}
+    function renderGameStats(){document.getElementById('gameBest').textContent=gameBest>0?gameBest+'ms':'-';var s=getTodayStats();document.getElementById('gameTodayCount').textContent=s.count;document.getElementById('gameTodayAvg').textContent=s.avg>0?s.avg+'ms':'-';var td=new Date().toISOString().split('T')[0],tr=gameRecords.filter(function(r){return r.date===td;}).reverse().slice(0,5),el=document.getElementById('gameHistory');el.textContent=tr.length>0?'最近：'+tr.map(function(r){return r.time+'ms';}).join(' · '):'';}
+    document.getElementById('gameArea').addEventListener('click',function(e){if(e.target.tagName==='BUTTON')return;if(gameState==='idle')startGame();else handleGameClick();});
+    document.getElementById('gameStartBtn').onclick=function(){if(gameState==='waiting')return;if(gameTimeout)clearTimeout(gameTimeout);resetGameUI();startGame();};
+    renderGameStats();
+
+    // ==================== 手速点击游戏（含难度选择） ====================
+    var clickGameActive=false,clickScore=0,clickTimeLeftMs=10000,clickGameInterval=null,clickBest=parseInt(localStorage.getItem('clickBest'))||0,clickLast=parseInt(localStorage.getItem('clickLast'))||0,clickDifficulty='easy';
+    var diffSettings={easy:{size:60,speed:300},medium:{size:40,speed:200},hard:{size:25,speed:120}};
+    document.querySelectorAll('.diff-btn').forEach(function(b){b.onclick=function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active');});this.classList.add('active');clickDifficulty=this.getAttribute('data-diff');};});
+
+    function moveTarget(){var t=document.getElementById('clickTarget');if(!t||!clickGameActive)return;var a=document.getElementById('clickArea'),ar=a.getBoundingClientRect(),sz=diffSettings[clickDifficulty].size,mx=Math.max(0,ar.width-sz-10),my=Math.max(0,ar.height-sz-10);t.style.width=sz+'px';t.style.height=sz+'px';t.style.left=Math.floor(Math.random()*mx)+'px';t.style.top=Math.floor(Math.random()*my)+'px';t.textContent=clickDifficulty==='hard'?'':'点';}
+    function startClickGame(){if(clickGameActive)return;clickGameActive=true;clickScore=0;clickTimeLeftMs=10000;document.getElementById('clickIdleText').style.display='none';document.getElementById('clickScore').style.display='block';document.getElementById('clickTimeLeft').style.display='block';document.getElementById('clickTarget').style.display='flex';document.getElementById('clickScore').textContent='0';document.getElementById('clickTimeLeft').textContent='10.0s';document.getElementById('clickArea').classList.add('active');document.getElementById('clickStartBtn').textContent='进行中...';document.getElementById('clickStartBtn').disabled=true;moveTarget();clickGameInterval=setInterval(function(){clickTimeLeftMs-=50;if(clickTimeLeftMs<=0){endClickGame();return;}document.getElementById('clickTimeLeft').textContent=(clickTimeLeftMs/1000).toFixed(1)+'s';},50);}
+    function endClickGame(){clickGameActive=false;if(clickGameInterval){clearInterval(clickGameInterval);clickGameInterval=null;}document.getElementById('clickTarget').style.display='none';document.getElementById('clickIdleText').style.display='block';document.getElementById('clickIdleText').textContent='得分：'+clickScore+' 次';document.getElementById('clickScore').style.display='none';document.getElementById('clickTimeLeft').style.display='none';document.getElementById('clickArea').classList.remove('active');document.getElementById('clickStartBtn').textContent='开始挑战';document.getElementById('clickStartBtn').disabled=false;clickLast=clickScore;localStorage.setItem('clickLast',clickScore);if(clickScore>clickBest){clickBest=clickScore;localStorage.setItem('clickBest',clickBest);}document.getElementById('clickBest').textContent=clickBest;document.getElementById('clickLast').textContent=clickLast;if(navigator.vibrate)navigator.vibrate(50);}
+    document.getElementById('clickTarget').addEventListener('click',function(e){e.stopPropagation();if(!clickGameActive)return;clickScore++;document.getElementById('clickScore').textContent=clickScore;moveTarget();if(navigator.vibrate)navigator.vibrate(10);});
+    document.getElementById('clickArea').addEventListener('click',function(e){if(clickGameActive&&e.target===document.getElementById('clickArea')){moveTarget();}});
+    document.getElementById('clickStartBtn').onclick=function(){if(clickGameActive)return;startClickGame();};
+    document.getElementById('clickBest').textContent=clickBest>0?clickBest:'-';document.getElementById('clickLast').textContent=clickLast>0?clickLast:'-';
+
+    // ==================== 节奏点击游戏 ====================
+    var rhythmActive=false,rhythmScore=0,rhythmTotal=0,rhythmDiffs=[],rhythmTimeout=null,rhythmFlashTimeout=null,rhythmBest=parseInt(localStorage.getItem('rhythmBest'))||0,rhythmAvgData=JSON.parse(localStorage.getItem('rhythmAvgData')||'[]');
+
+    function startRhythmGame(){
+        if(rhythmActive)return;
+        rhythmActive=true;rhythmScore=0;rhythmTotal=0;rhythmDiffs=[];
+        document.getElementById('rhythmText').textContent='等待闪烁...';
+        document.getElementById('rhythmScore').style.display='none';
+        document.getElementById('rhythmResult').textContent='';
+        document.getElementById('rhythmStartBtn').textContent='进行中...';
+        document.getElementById('rhythmStartBtn').disabled=true;
+        document.getElementById('rhythmArea').classList.remove('flash');
+        scheduleNextFlash();
+    }
+
+    function scheduleNextFlash(){
+        if(!rhythmActive)return;
+        var delay=800+Math.floor(Math.random()*2200);
+        rhythmTimeout=setTimeout(function(){
+            if(!rhythmActive)return;
+            document.getElementById('rhythmArea').classList.add('flash');
+            document.getElementById('rhythmText').textContent='点击！';
+            rhythmFlashTimeout=setTimeout(function(){
+                if(!rhythmActive)return;
+                document.getElementById('rhythmArea').classList.remove('flash');
+                document.getElementById('rhythmText').textContent='等待闪烁...';
+                rhythmDiffs.push(999);
+                rhythmTotal++;
+                updateRhythmDisplay();
+                scheduleNextFlash();
+            },5000);
+        },delay);
+    }
+
+    function handleRhythmClick(){
+        if(!rhythmActive)return;
+        var area=document.getElementById('rhythmArea');
+        if(area.classList.contains('flash')){
+            if(rhythmFlashTimeout)clearTimeout(rhythmFlashTimeout);
+            var reaction=Math.round(performance.now());
+            rhythmDiffs.push(reaction%500);
+            rhythmScore++;
+            rhythmTotal++;
+            area.classList.remove('flash');
+            document.getElementById('rhythmText').textContent='等待闪烁...';
+            updateRhythmDisplay();
+            if(navigator.vibrate)navigator.vibrate(10);
+            if(rhythmTotal>=10){endRhythmGame();return;}
+            scheduleNextFlash();
+        }else{
+            rhythmDiffs.push(999);
+            rhythmTotal++;
+            updateRhythmDisplay();
+            if(rhythmTotal>=10){endRhythmGame();return;}
         }
     }
-    document.getElementById('guestbookSendBtn').onclick = function() {
-        var input = document.getElementById('guestbookInput');
-        var msg = input.value.trim(); if (!msg) return;
-        var now = new Date();
-        var time = now.getMonth()+1 + '/' + now.getDate() + ' ' + now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-        guestbook.push({ msg: msg, time: time });
-        localStorage.setItem('guestbookMessages', JSON.stringify(guestbook));
-        input.value = ''; renderGuestbook();
-    };
-    document.getElementById('guestbookInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') document.getElementById('guestbookSendBtn').click(); });
+
+    function updateRhythmDisplay(){
+        document.getElementById('rhythmScore').style.display='block';
+        document.getElementById('rhythmScore').textContent=rhythmScore+'/'+rhythmTotal;
+    }
+
+    function endRhythmGame(){
+        rhythmActive=false;
+        if(rhythmTimeout)clearTimeout(rhythmTimeout);
+        if(rhythmFlashTimeout)clearTimeout(rhythmFlashTimeout);
+        document.getElementById('rhythmArea').classList.remove('flash');
+        document.getElementById('rhythmText').textContent='挑战结束';
+        document.getElementById('rhythmScore').style.display='block';
+        document.getElementById('rhythmScore').textContent=rhythmScore+'/'+rhythmTotal;
+        document.getElementById('rhythmStartBtn').textContent='开始挑战';
+        document.getElementById('rhythmStartBtn').disabled=false;
+        var validDiffs=rhythmDiffs.filter(function(d){return d<900;});
+        var avgDiff=validDiffs.length>0?Math.round(validDiffs.reduce(function(s,d){return s+d;},0)/validDiffs.length):999;
+        if(validDiffs.length>0 && (rhythmBest===0||validDiffs.length>rhythmBest)){rhythmBest=validDiffs.length;localStorage.setItem('rhythmBest',rhythmBest);}
+        rhythmAvgData.push(avgDiff);if(rhythmAvgData.length>50)rhythmAvgData=rhythmAvgData.slice(rhythmAvgData.length-50);
+        localStorage.setItem('rhythmAvgData',JSON.stringify(rhythmAvgData));
+        var allAvg=Math.round(rhythmAvgData.reduce(function(s,d){return s+d;},0)/rhythmAvgData.length);
+        document.getElementById('rhythmBest').textContent=rhythmBest>0?rhythmBest+'次':' -';
+        document.getElementById('rhythmAvg').textContent=allAvg<900?allAvg+'ms':' -';
+        document.getElementById('rhythmResult').textContent=validDiffs.length>0?'平均响应：'+avgDiff+'ms':'';
+        if(navigator.vibrate)navigator.vibrate([100,80,100]);
+    }
+
+    document.getElementById('rhythmArea').addEventListener('click',function(){if(rhythmActive)handleRhythmClick();});
+    document.getElementById('rhythmStartBtn').onclick=function(){if(rhythmActive)return;startRhythmGame();};
+    if(rhythmAvgData.length>0){var aa=Math.round(rhythmAvgData.reduce(function(s,d){return s+d;},0)/rhythmAvgData.length);document.getElementById('rhythmAvg').textContent=aa<900?aa+'ms':' -';}
+    document.getElementById('rhythmBest').textContent=rhythmBest>0?rhythmBest+'次':' -';
+
+    // ==================== 留言 ====================
+    var guestbook=JSON.parse(localStorage.getItem('guestbookMessages')||'[]');
+    function renderGuestbook(){var el=document.getElementById('guestbookMessages');if(!el)return;if(guestbook.length===0){el.innerHTML='<p style="color:var(--text-light); font-size:0.78em; text-align:center; padding:12px;">还没有留言，写一句吧</p>';return;}el.innerHTML='';for(var i=guestbook.length-1;i>=0;i--){var d=document.createElement('div');d.className='guestbook-msg';d.innerHTML='<span class="gb-time">'+guestbook[i].time+'</span><span>'+guestbook[i].msg+'</span>';el.appendChild(d);}}
+    document.getElementById('guestbookSendBtn').onclick=function(){var m=document.getElementById('guestbookInput').value.trim();if(!m)return;var n=new Date(),t=n.getMonth()+1+'/'+n.getDate()+' '+n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');guestbook.push({msg:m,time:t});localStorage.setItem('guestbookMessages',JSON.stringify(guestbook));document.getElementById('guestbookInput').value='';renderGuestbook();};
     renderGuestbook();
 })();
 </script>
